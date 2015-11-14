@@ -1,3 +1,4 @@
+<%@page session="true"%>
 <html>
 <head>
 <title>Nuevo usuario</title>
@@ -7,11 +8,11 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/alta.js"></script>
+<script type="text/javascript" src="/pages/js/alta.js"></script>
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-<link href="alta.css" rel="stylesheet" type="text/css">
+<link href="/pages/alta.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="navigator"></div>
@@ -22,8 +23,8 @@
 					<div class="col-md-12"
 						style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
 						<div style="display: inline;" class="col-md-5">
-							<label style="padding-right: 10px">Identificador:</label> <input
-								size="20">
+							<label style="padding-right: 10px">Identificador:</label> 
+							<input value=${title} size="20" disabled="true">
 						</div>
 						<div class="col-md-7" style="display: inline;">
 							<label style="padding-right: 10px;">Biblioteca de alta:</label>

@@ -32,6 +32,7 @@ public class Usuario implements java.io.Serializable {
 	private String email;
 	private String password;
 	private Date createTime;
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0); 
 	private Set<UsuarioExterno> usuarioexternos = new HashSet<>(0);
 
 	public Usuario() {
@@ -43,12 +44,13 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	public Usuario(Biblioteca biblioteca, String usuario, String email,
-			String password, Date createTime, Set<UsuarioExterno> usuarioexternos) {
+			String password, Date createTime, Set<UserRole> userRoles, Set<UsuarioExterno> usuarioexternos) {
 		this.biblioteca = biblioteca;
 		this.usuario = usuario;
 		this.email = email;
 		this.password = password;
 		this.createTime = createTime;
+		this.setUserRoles(userRoles);
 		this.usuarioexternos = usuarioexternos;
 	}
 
@@ -117,6 +119,15 @@ public class Usuario implements java.io.Serializable {
 
 	public void setUsuarioexternos(Set<UsuarioExterno> usuarioexternos) {
 		this.usuarioexternos = usuarioexternos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 }

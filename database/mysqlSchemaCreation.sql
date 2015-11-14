@@ -66,6 +66,15 @@ CREATE TABLE IF NOT EXISTS `bibliouned`.`UsuarioExterno` (
   CONSTRAINT `fk_UsuarioExterno_Usuario`
     FOREIGN KEY (`Usuario_id`)
     REFERENCES `bibliouned`.`Usuario` (`id`));
+    
+CREATE TABLE IF NOT EXISTS `bibliouned`.`UserRoles` (
+  `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
+  `role` VARCHAR(45) NULL,
+  `Usuario_id` BIGINT(10) NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_UserRoles_Usuario`
+    FOREIGN KEY (`Usuario_id`)
+    REFERENCES `bibliouned`.`Usuario` (`id`));
 
 CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`UsuarioExterno` (`id` ASC);
 

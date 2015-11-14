@@ -1,6 +1,5 @@
 package com.codinghome.bibliouned.dao;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,7 +13,6 @@ import com.codinghome.bibliouned.model.Biblioteca;
  * @see .Biblioteca
  * @author Hibernate Tools
  */
-@Stateless
 public class BibliotecaHome {
 
 	private static final Log log = LogFactory.getLog(BibliotecaHome.class);
