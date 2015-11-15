@@ -4,7 +4,7 @@
 activePage = "consulta-usuarios";
 selectedUser = null;
 jQuery(document).ready(function(){
-	$("#navigator").load("navigation.html");
+	$("#navigator").innerHtml("navigation.jsp");
 	
 	$("#modify-user1").click(function(){
 		console.log(this);

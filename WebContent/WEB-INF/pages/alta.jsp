@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html>
 <head>
@@ -8,11 +9,13 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/pages/js/alta.js"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/alta.js" />"></script>
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/pages/alta.css" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/css/alta.css" />" rel="stylesheet"
+	type="text/css">
 </head>
 <body>
 	<div id="navigator"></div>
@@ -23,8 +26,8 @@
 					<div class="col-md-12"
 						style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
 						<div style="display: inline;" class="col-md-5">
-							<label style="padding-right: 10px">Identificador:</label> 
-							<input value=${title} size="20" disabled="true">
+							<label style="padding-right: 10px">Identificador:</label> <input
+								value=${title } size="20" disabled="true">
 						</div>
 						<div class="col-md-7" style="display: inline;">
 							<label style="padding-right: 10px;">Biblioteca de alta:</label>
@@ -124,7 +127,8 @@
 					<div class="col-md-4" style="display: table;">
 						<div align="center" style="padding-top: 15%;">
 							<img class="img-responsive img-rounded"
-								src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif" style="height: 350px">
+								src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
+								style="height: 350px">
 							<div class="btn-group btn-group-lg" style="padding-top: 20px">
 								<a href="#" class="btn btn-default" style="width: 200px">Nueva
 									foto</a>
