@@ -48,12 +48,12 @@
 						style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
 						<div style="display: inline;" class="col-md-5">
 							<label style="padding-right: 10px">Identificador:</label> <input
-								value="${identificador}" size="20" disabled="true">
+								value="${externalUser.identificador}" size="20" disabled="true">
 						</div>
 						<div class="col-md-7" style="display: inline;">
 							<label style="padding-right: 10px;">Biblioteca de alta:</label>
 							<div style="display: inline; width: 100;">
-								<input value="${biblioteca}" style="width: auto;" disabled="true">
+								<input value="${externalUser.biblioteca.nombre}" style="width: auto;" disabled="true">
 							</div>
 						</div>
 					</div>
@@ -103,7 +103,7 @@
 							</div>
 							<div class="form-field">
 								<div>
-									<label>Correo electrÃ³nico:</label>
+									<label>Correo electrónico:</label>
 								</div>
 								<div>
 									<input>
@@ -111,7 +111,7 @@
 							</div>
 							<div class="form-field">
 								<div>
-									<label>TelÃ©fono:</label>
+									<label>Teléfono:</label>
 								</div>
 								<div>
 									<input>
@@ -119,7 +119,7 @@
 							</div>
 							<div class="form-field">
 								<div>
-									<label>CÃ³digo postal:</label>
+									<label>Código postal:</label>
 								</div>
 								<div>
 									<input>
@@ -129,7 +129,7 @@
 						<div class="col-md-12">
 							<div class="form-field">
 								<div>
-									<label>DirecciÃ³n:</label>
+									<label>Dirección:</label>
 								</div>
 								<div>
 									<input>
@@ -173,7 +173,7 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
+	<input type="hidden" id="externalUser" value='${externalUser}'/>
 </body>
 </html>

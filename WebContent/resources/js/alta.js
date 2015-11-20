@@ -3,6 +3,6 @@
  */
 activePage = "alta";
 jQuery(document).ready(function(){
-//	$("#navigator").load("/navigation");
-	
+	var externalUser = $("#externalUser").val();
+	console.log(externalUser);
 });

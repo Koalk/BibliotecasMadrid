@@ -34,6 +34,7 @@ public class UsuarioExterno implements java.io.Serializable {
 	private String codigoPostal;
 	private String direccion;
 	private String observaciones;
+	private byte[] foto;
 	private Date createTime;
 
 	public UsuarioExterno() {
@@ -188,6 +189,15 @@ public class UsuarioExterno implements java.io.Serializable {
 
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+
+	@Column(name = "foto")
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

@@ -1,6 +1,8 @@
 package com.codinghome.bibliouned.controller;
 
-import javax.validation.Valid;
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,14 +33,15 @@ public class AltaUsuarioController {
 	}
 	
     @RequestMapping(value = { "/alta**" }, method = RequestMethod.GET)
-    public ModelAndView newEmployee() {
+    public ModelAndView newEmployee(final HttpServletRequest request, Principal principal) {
     	ModelAndView model = new ModelAndView("alta");
-    	model.addObject("identificador","asdfzxcv");
+    	UsuarioExterno usuarioExterno = altaUsuarioService.getNewUsuarioExterno(sessionFactory.openSession(),principal.getName());
+    	model.addObject("externalUser",usuarioExterno);
         return model;
     }
     
 	@RequestMapping(value = { "/newUsuarioExterno" }, method = RequestMethod.POST)
-    public ModelAndView saveUsuarioExterno(@Valid UsuarioExterno usuarioExterno) {
+    public ModelAndView saveUsuarioExterno(UsuarioExterno usuarioExterno) {
 		Session session = this.sessionFactory.openSession();
     	Transaction tx = session.beginTransaction();
     	altaUsuarioService.persist(session,usuarioExterno);

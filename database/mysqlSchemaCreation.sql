@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `bibliouned`.`UsuarioExterno` (
   `codigopostal` VARCHAR(45) NULL,
   `direccion` VARCHAR(45) NULL,
   `observaciones` VARCHAR(255) NULL,
+  `foto` blob NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `Biblioteca_id` BIGINT(10) NULL,
   `User_id` BIGINT(10) NULL,
@@ -86,5 +87,6 @@ CREATE INDEX `fk_UsuarioExterno_Biblioteca_idx` ON `bibliouned`.`UsuarioExterno`
 
 CREATE INDEX `fk_UsuarioExterno_User_idx` ON `bibliouned`.`UsuarioExterno` (`User_id` ASC);
 
-INSERT INTO USER (Usuario,Password,Active) VALUES ('asdf','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.','1');  -- Usuario asdf con pass 123456
+INSERT INTO BIBLIOTECA (Identificador,Nombre,Direccion) VALUES ('ITU','Iturralde','asdf');
+INSERT INTO USER (Usuario,Password,Active,Biblioteca_id) VALUES ('asdf','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.','1','1');  -- Usuario asdf con pass 123456
 INSERT INTO USERROLES (User_id,Role) VALUES(1,'ROLE_USER');

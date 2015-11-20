@@ -4,9 +4,13 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.codinghome.bibliouned.model.Biblioteca;
 import com.codinghome.bibliouned.model.UsuarioExterno;
 
 @Repository("usuarioExternoDao")
@@ -25,42 +29,6 @@ public class UsuarioExternoDao {
 		}
 	}
 
-//	public void remove(UsuarioExterno persistentInstance) {
-//		log.debug("removing UsuarioExterno instance");
-//		try {
-//			entityManager.remove(persistentInstance);
-//			log.debug("remove successful");
-//		} catch (RuntimeException re) {
-//			log.error("remove failed", re);
-//			throw re;
-//		}
-//	}
-//
-//	public UsuarioExterno merge(UsuarioExterno detachedInstance) {
-//		log.debug("merging UsuarioExterno instance");
-//		try {
-//			UsuarioExterno result = entityManager.merge(detachedInstance);
-//			log.debug("merge successful");
-//			return result;
-//		} catch (RuntimeException re) {
-//			log.error("merge failed", re);
-//			throw re;
-//		}
-//	}
-//
-//	public UsuarioExterno findById(Long id) {
-//		log.debug("getting UsuarioExterno instance with id: " + id);
-//		try {
-//			UsuarioExterno instance = entityManager.find(UsuarioExterno.class,
-//					id);
-//			log.debug("get successful");
-//			return instance;
-//		} catch (RuntimeException re) {
-//			log.error("get failed", re);
-//			throw re;
-//		}
-//	}
-	
 	public List<UsuarioExterno> findAll(){
 		log.debug("getting all UsuarioExterno");
 		try{
@@ -70,5 +38,20 @@ public class UsuarioExternoDao {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+
+	public String getLastIdNumber(Session session, Biblioteca biblioteca) {
+		Criteria crit = session.createCriteria(UsuarioExterno.class);
+		crit.add(Restrictions.eq("biblioteca", biblioteca));
+		crit.setProjection(Projections.max("identificador"));
+		String result = (String) crit.uniqueResult();
+		return result;
+	}
+
+	public UsuarioExterno getUsuarioExternoByIdentificador(Session session, String identificador) {
+		Criteria crit = session.createCriteria(UsuarioExterno.class);
+		crit.add(Restrictions.eq("identificador", identificador));
+		UsuarioExterno usuarioExterno = (UsuarioExterno) crit.uniqueResult();
+		return usuarioExterno;
 	}
 }

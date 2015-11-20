@@ -24,7 +24,7 @@ public class UserService {
 	public Usuario loadUserByIdentificador(Session session, final String identificador) 
             throws UsernameNotFoundException {
 
-		Usuario user = usuarioDao.findByIdentificador(session, identificador);
+		Usuario user = usuarioDao.getUsuarioByUsername(session, identificador);
 //		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRoles());
 
 		return null;//buildUserForAuthentication(user, authorities);
