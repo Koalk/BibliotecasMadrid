@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page session="true"%>
 <html>
 <head>
@@ -41,139 +42,142 @@
 		</div>
 	</div>
 	<div class="content">
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12"
-						style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
-						<div style="display: inline;" class="col-md-5">
-							<label style="padding-right: 10px">Identificador:</label> <input
-								value="${externalUser.identificador}" size="20" disabled="true">
+		<form:form method="POST" action="alta" modelAttribute="externalUser">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12"
+							style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
+							<div style="display: inline;" class="col-md-5">
+								<form:label path="identificador" style="padding-right: 10px">Identificador:</form:label> 
+								<form:input path="identificador" size="20" readonly="true"/>
+							</div>
+							<div class="col-md-7" style="display: inline;">
+								<form:label path="biblioteca" style="padding-right: 10px;">Biblioteca de alta:</form:label>
+								<div style="display: inline; width: 100;">
+									<form:input path="biblioteca" 
+										style="width: auto;" readonly="true"/>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-7" style="display: inline;">
-							<label style="padding-right: 10px;">Biblioteca de alta:</label>
-							<div style="display: inline; width: 100;">
-								<input value="${externalUser.biblioteca.nombre}" style="width: auto;" disabled="true">
+						<div class="col-md-8">
+							<div class="col-md-6">
+								<div class="form-field">
+									<div>
+										<form:label path="nombre">Nombre:</form:label>
+									</div>
+									<div>
+										<form:input path="nombre" />
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="apellido1">Primer apellido:</form:label>
+									</div>
+									<div>
+										<form:input path="apellido1"/>
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="apellido2">Segundo apellido:</form:label>
+									</div>
+									<div>
+										<form:input path="apellido2"/>
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="localidad">Localidad:</form:label>
+									</div>
+									<div>
+										<form:input path="localidad"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-field">
+									<div>
+										<form:label path="nifPasaporte">Nif/Pasaporte:</form:label>
+									</div>
+									<div>
+										<form:input path="nifPasaporte"/>
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="mail">Correo electrónico:</form:label>
+									</div>
+									<div>
+										<form:input path="mail"/>
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="telefono">Teléfono:</form:label>
+									</div>
+									<div>
+										<form:input path="telefono"/>
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="codigoPostal">Código postal:</form:label>
+									</div>
+									<div>
+										<form:input path="codigoPostal"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-field">
+									<div>
+										<form:label path="direccion">Dirección:</form:label>
+									</div>
+									<div>
+										<form:input path="direccion"/>
+									</div>
+								</div>
+								<div class="form-field">
+									<div>
+										<form:label path="observaciones">Observaciones:</form:label>
+									</div>
+									<div>
+										<form:textarea path="observaciones" style="width: 100%;" rows="4"></form:textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4" style="display: table;">
+							<div align="center" style="padding-top: 15%;">
+								<img id="fotoPreview" class="img-responsive img-rounded"
+									src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
+									style="height: 350px">
+								<div class="btn-group btn-group-lg" style="padding-top: 20px">
+									<a href="#" class="btn btn-default" style="width: 200px">Nueva
+										foto</a>
+								<form:input id="foto" path="foto" type="file" style="display:hidden;"/>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-8">
-						<div class="col-md-6">
-							<div class="form-field">
-								<div>
-									<label>Nombre:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Primer apellido:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Segundo apellido:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Localidad:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
+				</div>
+			</div>
+			<div class="section" style="position: relative; top: -20px">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6" style="padding-top: 10px">
+							<input type="submit" class="btn btn-block btn-lg btn-primary"
+								style="height: 60px; font-size: 25px; padding-top: 10px;" value="Guardar"/>
 						</div>
-						<div class="col-md-6">
-							<div class="form-field">
-								<div>
-									<label>Nif/Pasaporte:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Correo electrónico:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Teléfono:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Código postal:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-field">
-								<div>
-									<label>Dirección:</label>
-								</div>
-								<div>
-									<input>
-								</div>
-							</div>
-							<div class="form-field">
-								<div>
-									<label>Observaciones:</label>
-								</div>
-								<div>
-									<textarea style="width: 100%;" rows="4"></textarea>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4" style="display: table;">
-						<div align="center" style="padding-top: 15%;">
-							<img class="img-responsive img-rounded"
-								src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
-								style="height: 350px">
-							<div class="btn-group btn-group-lg" style="padding-top: 20px">
-								<a href="#" class="btn btn-default" style="width: 200px">Nueva
-									foto</a>
-							</div>
+						<div class="col-md-6" style="padding-top: 10px">
+							<a class="btn btn-block btn-lg btn-warning"
+								style="height: 60px; font-size: 25px; padding-top: 10px;">Descartar</a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="section" style="position: relative; top: -20px">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6" style="padding-top: 10px">
-						<a class="btn btn-block btn-lg btn-primary"
-							style="height: 60px; font-size: 25px; padding-top: 10px;">Guardar</a>
-					</div>
-					<div class="col-md-6" style="padding-top: 10px">
-						<a class="btn btn-block btn-lg btn-warning"
-							style="height: 60px; font-size: 25px; padding-top: 10px;">Descartar</a>
-					</div>
-				</div>
-			</div>
-		</div>
+		</form:form>
 	</div>
-	<input type="hidden" id="externalUser" value='${externalUser}'/>
 </body>
 </html>

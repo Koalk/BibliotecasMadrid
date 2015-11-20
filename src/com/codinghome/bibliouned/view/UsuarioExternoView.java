@@ -1,5 +1,7 @@
 package com.codinghome.bibliouned.view;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UsuarioExternoView {
 	
 	private String identificador;
@@ -14,6 +16,7 @@ public class UsuarioExternoView {
 	private String codigoPostal;
 	private String direccion;
 	private String observaciones;
+	private MultipartFile foto;
 	
 	public UsuarioExternoView() {}
 	
@@ -88,5 +91,13 @@ public class UsuarioExternoView {
 	}
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+
+	public MultipartFile getFoto() {
+		return foto;
+	}
+
+	public void setFoto(MultipartFile foto) {
+		this.foto = foto;
 	}
 }

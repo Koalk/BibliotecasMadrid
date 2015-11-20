@@ -83,7 +83,7 @@ public class UsuarioExterno implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Usuario_id")
+	@JoinColumn(name = "User_id")
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -165,11 +165,11 @@ public class UsuarioExterno implements java.io.Serializable {
 	}
 
 	@Column(name = "codigopostal", length = 45)
-	public String getCodigopostal() {
+	public String getCodigoPostal() {
 		return this.codigoPostal;
 	}
 
-	public void setCodigopostal(String codigopostal) {
+	public void setCodigoPostal(String codigopostal) {
 		this.codigoPostal = codigopostal;
 	}
 

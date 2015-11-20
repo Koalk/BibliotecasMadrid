@@ -49,13 +49,31 @@ public class AltaUsuarioService {
 		return usuarioExternoDao.findAll();
 	}
 
-	public UsuarioExterno getNewUsuarioExterno(Session session, String name) {
-		UsuarioExterno usuarioExterno = new UsuarioExterno();
+	public UsuarioExternoView getNewUsuarioExterno(Session session, String name) {
+		UsuarioExternoView usuarioExterno = new UsuarioExternoView();
 		Usuario usuario = usuarioDao.getUsuarioByUsername(session, name);
 		Biblioteca biblioteca = usuario.getBiblioteca();
-		usuarioExterno.setUsuario(usuario);
-		usuarioExterno.setBiblioteca(biblioteca);
+		usuarioExterno.setBiblioteca(biblioteca.getNombre());
+//		para probar modificación
+//		usuarioExterno = getViewFromUsuarioExterno(usuarioExternoDao.getUsuarioExternoByIdentificador(session, "ITU1"));
 		return usuarioExterno;
+	}
+	
+	public UsuarioExternoView getViewFromUsuarioExterno (UsuarioExterno usuarioExterno){
+		UsuarioExternoView view = new UsuarioExternoView();
+		view.setIdentificador(usuarioExterno.getIdentificador());
+		view.setBiblioteca(usuarioExterno.getBiblioteca() != null ? usuarioExterno.getBiblioteca().getNombre() : "");
+		view.setNombre(usuarioExterno.getNombre());
+		view.setApellido1(usuarioExterno.getApellido1());
+		view.setApellido2(usuarioExterno.getApellido2());
+		view.setCodigoPostal(usuarioExterno.getCodigoPostal());
+		view.setDireccion(usuarioExterno.getDireccion());
+		view.setLocalidad(usuarioExterno.getLocalidad());
+		view.setMail(usuarioExterno.getMail());
+		view.setNifPasaporte(usuarioExterno.getNifPasaporte());
+		view.setObservaciones(usuarioExterno.getObservaciones());
+		view.setTelefono(usuarioExterno.getTelefono());
+		return view;
 	}
 	
 	public UsuarioExterno getUsuarioExternoFromView (Session session, String name, UsuarioExternoView view){
@@ -73,7 +91,7 @@ public class AltaUsuarioService {
 		usuarioExterno.setNombre(view.getNombre());
 		usuarioExterno.setApellido1(view.getApellido1());
 		usuarioExterno.setApellido2(view.getApellido2());
-		usuarioExterno.setCodigopostal(view.getCodigoPostal());
+		usuarioExterno.setCodigoPostal(view.getCodigoPostal());
 		usuarioExterno.setDireccion(view.getDireccion());
 		usuarioExterno.setLocalidad(view.getLocalidad());
 		usuarioExterno.setMail(view.getMail());
