@@ -18,7 +18,28 @@
 	type="text/css">
 </head>
 <body>
-	<div id="navigator"></div>
+	<div id="navigator">
+		<div style="width: 100%;">
+			<span style="position: absolute; top: 0px; left: 0px; z-index: 10;">
+				<img height="80" alt="UNED Madrid"
+				src="<c:url value="/resources/img/logo.jpg" />" />
+			</span>
+			<div class="navbar navbar-default"
+				style="margin-top: 30px; position: absolute; left: 130px; overflow: hidden; width: 85%;">
+				<div class="container">
+					<div class="collapse navbar-collapse" id="navbar-ex-collapse">
+						<ul class="nav navbar-nav navbar-left" style="width: 100%;">
+							<li id="consulta-usuarios"><a href="consulta-usuarios">Consulta
+									de Usuarios</a></li>
+							<li id="alta" class="active"><a href="">Alta de usuarios</a></li>
+							<li id="configuracion"><a href="#">Configuración</a></li>
+							<li id="salir"><a href="login?logout">Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="content">
 		<div class="section">
 			<div class="container">
@@ -27,12 +48,12 @@
 						style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
 						<div style="display: inline;" class="col-md-5">
 							<label style="padding-right: 10px">Identificador:</label> <input
-								value=${title } size="20" disabled="true">
+								value="${identificador}" size="20" disabled="true">
 						</div>
 						<div class="col-md-7" style="display: inline;">
 							<label style="padding-right: 10px;">Biblioteca de alta:</label>
 							<div style="display: inline; width: 100;">
-								<input style="width: auto;">
+								<input value="${biblioteca}" style="width: auto;" disabled="true">
 							</div>
 						</div>
 					</div>

@@ -18,13 +18,34 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id="navigator"></div>
+	<div id="navigator">
+		<div style="width: 100%;">
+			<span style="position: absolute; top: 0px; left: 0px; z-index: 10;">
+				<img height="80" alt="UNED Madrid"
+				src="<c:url value="/resources/img/logo.jpg" />" />
+			</span>
+			<div class="navbar navbar-default"
+				style="margin-top: 30px; position: absolute; left: 130px; overflow: hidden; width: 85%;">
+				<div class="container">
+					<div class="collapse navbar-collapse" id="navbar-ex-collapse">
+						<ul class="nav navbar-nav navbar-left" style="width: 100%;">
+							<li id="consulta-usuarios" class="active"><a href="#">Consulta
+									de Usuarios</a></li>
+							<li id="alta"><a href="alta">Alta de usuarios</a></li>
+							<li id="configuracion"><a href="#">Configuración</a></li>
+							<li id="salir"><a href="login?logout">Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="modal fade" id="modify-user-modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">Ã—</button>
+						aria-hidden="true">x—</button>
 					<h4 class="modal-title">Modificar usuario</h4>
 				</div>
 				<div class="modal-body">
@@ -88,9 +109,9 @@
 									<th>Nombre</th>
 									<th>Apellidos</th>
 									<th>Localidad</th>
-									<th>Correo electrÃ³nico</th>
-									<th>TelÃ©fono</th>
-									<th>CÃ³digo postal</th>
+									<th>Correo electrónico</th>
+									<th>Teléfono</th>
+									<th>Código postal</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -123,13 +144,13 @@
 							</tbody>
 						</table>
 						<ul class="pagination">
-							<li><a href="#">Prev</a></li>
+							<li><a href="#">Ant</a></li>
 							<li><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
 							<li><a href="#">3</a></li>
 							<li><a href="#">4</a></li>
 							<li><a href="#">5</a></li>
-							<li><a href="#">Next</a></li>
+							<li><a href="#">Sig</a></li>
 						</ul>
 					</div>
 				</div>
