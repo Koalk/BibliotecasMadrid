@@ -152,8 +152,10 @@
 							</div>
 						</div>
 						<div class="col-md-4" style="display: table;">
-							<div align="center" style="padding-top: 15%;">
+							<div id="camContainer" align="center" style="padding-top: 15%;height: 350px;width: 290px;overflow:hidden;">
 								<div id="camPreview" style="height: 350px; width: 290px;"></div>
+							</div>
+							<div align="center" style="padding-top: 15%;">
 								<img id="fotoPreview" class="img-responsive img-rounded"
 									src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
 									style="height: 350px; width: 290px; display: none;">

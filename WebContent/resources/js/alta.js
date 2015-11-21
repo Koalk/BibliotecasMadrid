@@ -15,10 +15,10 @@ function setWebcam(){
 		// live preview size
 		width: 290,
 		height: 350,
-
-		// final size
-		dest_width: 290,
-		dest_height: 350,
+		
+		// final cropped size
+		crop_width: 290,
+		crop_height: 350,
 
 		// flip horizontal (mirror mode)
 		flip_horiz: true
@@ -28,8 +28,9 @@ function setWebcam(){
 
 function takePicture(){
 	Webcam.snap(function(dataUrl){
-//		var imageData = dataUrl.replace(/^data\:image\/\w+\;base64\,/, '');
-		$("#foto").val(dataURItoBlob(dataUrl));
+		var imageData = dataUrl.replace(/^data\:image\/\w+\;base64\,/, '');
+//		var blobData = dataURItoBlob(dataUrl);
+		$("#foto").val(imageData);
 		previewFoto();
 	});
 	return false;
@@ -40,6 +41,7 @@ function switchCamPreview(toOn){
 		$("#newPictureButton").hide();
 		$("#takePictureButton").show();
 		$("#fotoPreview").hide();
+		$("#camContainer").show();
 		$("#camPreview").show();
 		Webcam.attach("#camPreview");
 		$("#foto").val(null);
@@ -50,25 +52,32 @@ function switchCamPreview(toOn){
 		$("#fotoPreview").show();
 		Webcam.reset();
 		$("#camPreview").hide();
+		$("#camContainer").hide();
 	}
 	return false;
 }
 
 function previewFoto(){
-	if ($("#foto").val() != null){
-		var foto = new Blob($("#foto").val());
-		var reader  = new FileReader();
-		reader.onloadend = function () {
-			$("#fotoPreview").attr("src",dataUrl);
-			switchCamPreview(false);
-		}
+	if ($("#foto").val()){
+		var foto = $("#foto").val();
+//		var reader  = new FileReader();
+//		reader.onloadend = function () {
+//			$("#fotoPreview").attr("src",dataUrl);
+//			switchCamPreview(false);
+//		}
 
 		if (foto) {
-			reader.readAsDataURL(foto);
+			$("#fotoPreview").attr("src","data:image/jpeg;base64,"+foto);
+			switchCamPreview(false);
+//			reader.readAsDataURL(foto);
+			
 		} else {
 			$("#fotoPreview").attr("src","");
 			switchCamPreview(true);
 		}
+	}
+	else {
+		switchCamPreview(true);
 	}
 	return false;
 }
