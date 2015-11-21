@@ -54,6 +54,7 @@ public class AltaUsuarioController {
     	System.out.println(usuarioExterno.getBiblioteca());
     	System.out.println(usuarioExterno.getCodigoPostal());
     	System.out.println(usuarioExterno.getDireccion());
+    	System.out.println(usuarioExterno.getFoto().getSize());
     	ModelAndView model = new ModelAndView("alta");
     	model.addObject("identificador","asdfzxcv");
     	model.setViewName("consulta-usuarios");
