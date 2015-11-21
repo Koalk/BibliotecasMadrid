@@ -86,7 +86,7 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`UsuarioExterno` (`id` ASC);
 CREATE INDEX `fk_UsuarioExterno_Biblioteca_idx` ON `bibliouned`.`UsuarioExterno` (`Biblioteca_id` ASC);
 
 CREATE INDEX `fk_UsuarioExterno_User_idx` ON `bibliouned`.`UsuarioExterno` (`User_id` ASC);
-
+-- Prueba git
 INSERT INTO BIBLIOTECA (Identificador,Nombre,Direccion) VALUES ('ITU','Iturralde','asdf');
 INSERT INTO USER (Usuario,Password,Active,Biblioteca_id) VALUES ('asdf','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.','1','1');  -- Usuario asdf con pass 123456
 INSERT INTO USERROLES (User_id,Role) VALUES(1,'ROLE_USER');
