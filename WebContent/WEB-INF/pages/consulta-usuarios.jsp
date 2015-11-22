@@ -64,35 +64,62 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="col-md-6">
-							<form class="form-horizontal" role="form">
+						<form method="POST">
+							<div class="form-horizontal" role="form">
 								<div class="form-group">
-									<div class="col-sm-2">
-										<label for="inputEmail3" class="control-label">Email</label>
-									</div>
-									<div class="col-sm-10">
-										<input type="email" class="form-control" id="inputEmail3"
-											placeholder="Email">
+									<div class="form-inline">
+										<div class="col-sm-4">
+											<label for=nombre class="control-label" style="min-width: 125px;">Nombre: </label>
+											<input type="text" class="form-control" id="nombre" placeholder="Nombre">
+										</div>
+										<div class="col-sm-4">
+											<label for="apellido1" class="control-label" style="min-width: 125px;">Apellido 1: </label>
+											<input type="text" class="form-control" id="apellido1" placeholder="Primer apellido">
+										</div>
+										<div class="col-sm-4">
+											<label for="apellido2" class="control-label" style="min-width: 125px;">Apellido 2: </label>
+											<input type="text" class="form-control" id="apellido2" placeholder="Segundo apellido">
+										</div>
 									</div>
 								</div>
+							</div>
+							<div class="form-horizontal" role="form">
 								<div class="form-group">
-									<div class="col-sm-2">
-										<label for="inputPassword3" class="control-label">Password</label>
-									</div>
-									<div class="col-sm-10">
-										<input type="password" class="form-control"
-											id="inputPassword3" placeholder="Password">
+									<div class="form-inline">
+										<div class="col-sm-4">
+											<label for="numeroUsuario" class="control-label" style="min-width: 125px;">Número de usuario: </label>
+											<input type="text" class="form-control" id="numeroUsuario" placeholder="Número de usuario">
+										</div>
+										<div class="col-sm-4">
+											<label for="nif" class="control-label" style="min-width: 125px;">NIF/Pasaporte: </label>
+											<input type="text" class="form-control" id="nif" placeholder="NIF/Pasaporte">
+										</div>
+										<div class="col-sm-4">
+											<label for="telefono" class="control-label" style="min-width: 125px;">Teléfono: </label>
+											<input type="text" class="form-control" id="telefono" placeholder="Teléfono">
+										</div>
 									</div>
 								</div>
-							</form>
-						</div>
-						<div class="col-md-6"></div>
-					</div>
-				</div>
-				<div class="row text-right">
-					<div class="col-md-12" style="padding-right: 10%">
-						<a class="btn btn-warning" id="clean">Limpiar</a> <a
-							class="btn btn-primary" id="search">Buscar</a>
+							</div>
+							<div class="form-horizontal" role="form">
+								<div class="form-group">
+									<div class="form-inline">
+										<div class="col-sm-4">
+											<label for="correo" class="control-label" style="min-width: 125px;">Correo: </label>
+											<input type="text" class="form-control" id="correo" placeholder="Correo">
+										</div>
+										<div class="col-sm-4">
+											<label for="localidad" class="control-label" style="min-width: 125px;">Localidad: </label>
+											<input type="text" class="form-control" id="localidad" placeholder="Localidad">
+										</div>
+										<div class="col-sm-4,row text-right" style="padding-right: 10%">
+											<a class="btn btn-warning" id="clean">Limpiar</a>
+											<input type="submit" class="btn btn-primary" id="search" value="Buscar" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
