@@ -35,7 +35,7 @@
 							style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
 							<div style="display: inline;" class="col-md-5">
 								<form:label path="identificador" style="padding-right: 10px">Identificador:</form:label>
-								<form:input id="identificadorField" path="identificador" size="20" readonly="true" />
+								<form:input id="identificadorField" path="identificador" maxlength="20" readonly="true" />
 							</div>
 							<div class="col-md-7" style="display: inline; white-space: nowrap;" >
 								<form:label path="biblioteca" style="padding-right: 10px;">Biblioteca de alta:</form:label>
@@ -49,68 +49,76 @@
 							<div class="col-md-6">
 								<div class="form-field">
 									<div>
-										<form:label path="nombre">Nombre:</form:label>
+										<form:label path="nombre">Nombre*:</form:label>
+										<form:errors path="nombre" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="nombre" size="64" />
+										<form:input path="nombre" maxlength="64" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
-										<form:label path="apellido1">Primer apellido:</form:label>
+										<form:label path="apellido1">Primer apellido*:</form:label>
+										<form:errors path="apellido1" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="apellido1" size="64" />
+										<form:input path="apellido1" maxlength="64" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
 										<form:label path="apellido2">Segundo apellido:</form:label>
+										<form:errors path="apellido2" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="apellido2" size="64" />
+										<form:input path="apellido2" maxlength="64" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
 										<form:label path="localidad">Localidad:</form:label>
+										<form:errors path="localidad" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="localidad" size="64" />
+										<form:input path="localidad" maxlength="64" />
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-field">
 									<div>
-										<form:label path="nifPasaporte">Nif/Pasaporte:</form:label>
+										<form:label path="nifPasaporte">Nif/Pasaporte*:</form:label>
+										<form:errors path="nifPasaporte" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="nifPasaporte" size="16" />
+										<form:input path="nifPasaporte" maxlength="16" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
 										<form:label path="mail">Correo electrónico:</form:label>
+										<form:errors path="mail" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="mail" size="128" />
+										<form:input path="mail" maxlength="128" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
 										<form:label path="telefono">Teléfono:</form:label>
+										<form:errors path="telefono" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="telefono" size="16" />
+										<form:input path="telefono" maxlength="16" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
 										<form:label path="codigoPostal">Código postal:</form:label>
+										<form:errors path="codigoPostal" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="codigoPostal" size="5" />
+										<form:input path="codigoPostal" maxlength="5" />
 									</div>
 								</div>
 							</div>
@@ -118,17 +126,19 @@
 								<div class="form-field">
 									<div>
 										<form:label path="direccion">Dirección:</form:label>
+										<form:errors path="direccion" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:input path="direccion" size="256" />
+										<form:input path="direccion" maxlength="256" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
 										<form:label path="observaciones">Observaciones:</form:label>
+										<form:errors path="observaciones" cssClass="error-field"/>
 									</div>
 									<div>
-										<form:textarea path="observaciones" style="width: 100%;"
+										<form:textarea path="observaciones"  maxlength="256" style="width: 100%;"
 											rows="4"></form:textarea>
 									</div>
 								</div>
@@ -140,6 +150,7 @@
 								<div id="camPreview" style="height: 350px; width: 290px;"></div>
 							</div>
 							<div align="center" style="padding-top: 15%;">
+								<form:errors path="foto" cssClass="error-field"/>
 								<img id="fotoPreview" class="img-responsive img-rounded"
 									src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
 									style="height: 290px; width: 290px; display: none;">

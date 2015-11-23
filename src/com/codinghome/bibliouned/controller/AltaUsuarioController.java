@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -18,10 +19,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,6 +61,11 @@ public class AltaUsuarioController implements ServletContextAware{
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -97,38 +107,46 @@ public class AltaUsuarioController implements ServletContextAware{
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView saveUsuarioExterno(final HttpServletRequest request, 
 			Principal principal, 
-			@ModelAttribute(value = "externalUser") UsuarioExternoView externalUser, 
+			@Valid @ModelAttribute(value = "externalUser") UsuarioExternoView externalUser, 
 			BindingResult result) {
-		Session session = this.sessionFactory.openSession();
 		ModelAndView model = null;
-		try {
-			Map<String,String> errors = validateUsuarioExterno(externalUser);
-			byte[] foto = null;
-			if (externalUser.getFoto() == null || (foto = Base64.decode(externalUser.getFoto().getBytes())) == null || foto.length <= 0){
-				errors.put("errorfoto", "Es obligatorio añadir una foto.");
+		if (result.hasErrors()){
+			Session session = this.sessionFactory.openSession();
+			try {
+				Map<String,String> errors = validateUsuarioExterno(externalUser);
+				byte[] foto = null;
+				if (externalUser.getFoto() == null || (foto = Base64.decode(externalUser.getFoto().getBytes())) == null || foto.length <= 0){
+					ObjectError error = new ObjectError("foto", "Es obligatorio añadir una foto.");
+					result.addError(error);
+				}
+				model = new ModelAndView();
+				String pathFoto = null;
+				if (errors.isEmpty() && (pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, result)) != null){
+					Transaction tx = session.beginTransaction();
+					UsuarioExterno usuarioExterno = altaUsuarioService.getUsuarioExternoFromView(session, principal.getName(), externalUser);
+					usuarioExterno.setFoto(pathFoto);
+					altaUsuarioService.persist(session,usuarioExterno);
+					tx.commit();
+					model.setViewName("redirect:consulta-usuarios?userIdentificador="+usuarioExterno.getIdentificador());
+				}
+				else {
+					model.addObject("externalUser",externalUser);
+					model.setViewName("alta");
+					model.addAllObjects(errors);
+				}
+			} finally {
+				session.close();
 			}
+		}
+		else {
 			model = new ModelAndView();
-			String pathFoto = null;
-			if (errors.isEmpty() && (pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, errors)) != null){
-				Transaction tx = session.beginTransaction();
-				UsuarioExterno usuarioExterno = altaUsuarioService.getUsuarioExternoFromView(session, principal.getName(), externalUser);
-				usuarioExterno.setFoto(pathFoto);
-				altaUsuarioService.persist(session,usuarioExterno);
-				tx.commit();
-				model.setViewName("redirect:consulta-usuarios?userIdentificador="+usuarioExterno.getIdentificador());
-			}
-			else {
-				model.addObject("externalUser",externalUser);
-				model.setViewName("alta");
-				model.addAllObjects(errors);
-			}
-		} finally {
-			session.close();
+			model.addObject("externalUser",externalUser);
+			model.setViewName("alta");
 		}
 		return model;
 	}
 
-	private String saveImage(String fileName, byte[] image, Map<String, String> errors) {
+	private String saveImage(String fileName, byte[] image, BindingResult errorData) {
 		String result = null;
 		try {
 			File file = new File(servletContext.getRealPath("/") + "/../../fotos/" + fileName);
@@ -138,7 +156,8 @@ public class AltaUsuarioController implements ServletContextAware{
 					+ " on your computer and verify that the image has been stored.");
 		} catch (Exception e) {
 			log.error(e);
-			errors.put("errorfoto", "No se ha podido guardar la foto.");
+			ObjectError error = new ObjectError("foto", "No se ha podido guardar la foto.");
+			errorData.addError(error);
 		}
 		return result;
 	}

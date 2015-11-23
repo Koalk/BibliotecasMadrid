@@ -6789,5 +6789,8 @@ body {
 	padding-top: 100px;
 }
 .error-field {
-	
+	color: #ff0000;
+	font-weight: bold;
+	font-size: x-small;
+	white-space: nowrap;
 }
