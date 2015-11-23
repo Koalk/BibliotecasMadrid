@@ -20,10 +20,10 @@
 				<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 					<ul class="nav navbar-nav navbar-left" style="width: 100%;">
 						<li id="consulta-usuarios">
-							<a href="consulta-usuarios.jsp">Consulta de Usuarios</a>
+							<a href="consulta-usuarios">Consulta de Usuarios</a>
 						</li>
-						<li id="alta"><a href="alta.jsp">Alta de usuarios</a></li>
-						<li id="configuracion"><a href="#">Configuraciï¿½n</a></li>
+						<li id="alta"><a href="alta">Alta de usuarios</a></li>
+						<li id="configuracion"><a href="#">Configuración</a></li>
 						<li id="salir"><a href="/login?logout">Salir</a></li>
 					</ul>
 				</div>

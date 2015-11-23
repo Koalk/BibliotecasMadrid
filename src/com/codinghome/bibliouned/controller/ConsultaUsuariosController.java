@@ -61,7 +61,7 @@ public class ConsultaUsuariosController {
 		Session session = sessionFactory.openSession();
 		try {
 			model = new ModelAndView();
-			model.setViewName("redirect:consulta-usuarios");
+			model.addObject("externalUser",usuarioExterno);
 			List<UsuarioExterno> usuariosExternos =  consultaUsuariosService.findUsuariosExternos(session, usuarioExterno);
 			//		for (UsuarioExterno user: usuariosExternos) {
 			//			System.out.println(user.getNombre());

@@ -20,26 +20,7 @@
 </head>
 <body>
 	<div id="navigator">
-		<div style="width: 100%;">
-			<span style="position: absolute; top: 0px; left: 0px; z-index: 10;">
-				<img height="80" alt="UNED Madrid"
-				src="<c:url value="/resources/img/logo.jpg" />" />
-			</span>
-			<div class="navbar navbar-default"
-				style="margin-top: 30px; position: absolute; left: 130px; overflow: hidden; width: 85%;">
-				<div class="container">
-					<div class="collapse navbar-collapse" id="navbar-ex-collapse">
-						<ul class="nav navbar-nav navbar-left" style="width: 100%;">
-							<li id="consulta-usuarios" class="active"><a href="#">Consulta
-									de Usuarios</a></li>
-							<li id="alta"><a href="alta">Alta de usuarios</a></li>
-							<li id="configuracion"><a href="#">Configuración</a></li>
-							<li id="salir"><a href="login?logout">Salir</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+		<jsp:include page="navigation.jsp" />
 	</div>
 	<div class="modal fade" id="modify-user-modal">
 		<div class="modal-dialog">
@@ -49,8 +30,7 @@
 						aria-hidden="true">x—</button>
 					<h4 class="modal-title">Modificar usuario</h4>
 				</div>
-				<div class="modal-body">
-					<p>One fine body...</p>
+				<div id="modal-body" class="modal-body">
 				</div>
 				<div class="modal-footer">
 					<a class="btn btn-default" data-dismiss="modal">Cerrar</a> <a
@@ -157,7 +137,7 @@
 										<td>
 											<a class="btn btn-primary"
 												data-toggle="modal" data-target="#modify-user-modal"
-												onClick="showModifyModal();return false;">
+												onClick="showModifyModal('${user.identificador}');return false;">
 												Modificar
 											</a>
 										</td>

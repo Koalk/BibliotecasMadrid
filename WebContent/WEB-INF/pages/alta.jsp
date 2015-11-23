@@ -22,26 +22,29 @@
 </head>
 <body>
 	<div id="navigator">
-		<div style="width: 100%;">
-			<span style="position: absolute; top: 0px; left: 0px; z-index: 10;">
-				<img height="80" alt="UNED Madrid"
-				src="<c:url value="/resources/img/logo.jpg" />" />
-			</span>
-			<div class="navbar navbar-default"
-				style="margin-top: 30px; position: absolute; left: 130px; overflow: hidden; width: 85%;">
-				<div class="container">
-					<div class="collapse navbar-collapse" id="navbar-ex-collapse">
-						<ul class="nav navbar-nav navbar-left" style="width: 100%;">
-							<li id="consulta-usuarios"><a href="consulta-usuarios">Consulta
-									de Usuarios</a></li>
-							<li id="alta" class="active"><a href="">Alta de usuarios</a></li>
-							<li id="configuracion"><a href="#">Configuración</a></li>
-							<li id="salir"><a href="login?logout">Salir</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+		<c:if test="${empty userIdentificador}">
+			<jsp:include page="navigation.jsp" />
+		</c:if>
+<!-- 		<div style="width: 100%;"> -->
+<!-- 			<span style="position: absolute; top: 0px; left: 0px; z-index: 10;"> -->
+<!-- 				<img height="80" alt="UNED Madrid" -->
+<%-- 				src="<c:url value="/resources/img/logo.jpg" />" /> --%>
+<!-- 			</span> -->
+<!-- 			<div class="navbar navbar-default" -->
+<!-- 				style="margin-top: 30px; position: absolute; left: 130px; overflow: hidden; width: 85%;"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="collapse navbar-collapse" id="navbar-ex-collapse"> -->
+<!-- 						<ul class="nav navbar-nav navbar-left" style="width: 100%;"> -->
+<!-- 							<li id="consulta-usuarios"><a href="consulta-usuarios">Consulta -->
+<!-- 									de Usuarios</a></li> -->
+<!-- 							<li id="alta" class="active"><a href="">Alta de usuarios</a></li> -->
+<!-- 							<li id="configuracion"><a href="#">Configuración</a></li> -->
+<!-- 							<li id="salir"><a href="login?logout">Salir</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 	<div class="content">
 		<form:form method="POST" action="alta" modelAttribute="externalUser">
