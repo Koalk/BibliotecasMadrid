@@ -26,9 +26,9 @@ public class ConsultaUsuariosService {
 		this.usuarioDao = usuarioDao;
 	}
 	
-	public UsuarioExternoView getUsuarioExterno(Session session, String name) {
+	public UsuarioExternoView getUsuarioExterno(Session session, String identificador) {
 		UsuarioExternoView usuarioExterno = new UsuarioExternoView();
-		UsuarioExterno usuario = usuarioExternoDao.getUsuarioExternoByIdentificador(session, name);
+		UsuarioExterno usuario = usuarioExternoDao.getUsuarioExternoByIdentificador(session, identificador);
 		if (usuario != null){
 			usuarioExterno.setNombre(usuario.getNombre());
 			usuarioExterno.setApellido1(usuario.getApellido1());

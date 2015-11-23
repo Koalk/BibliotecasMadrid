@@ -54,8 +54,11 @@ public class AltaUsuarioService {
 		Usuario usuario = usuarioDao.getUsuarioByUsername(session, name);
 		Biblioteca biblioteca = usuario.getBiblioteca();
 		usuarioExterno.setBiblioteca(biblioteca.getNombre());
-//		para probar modificación
-//		usuarioExterno = getViewFromUsuarioExterno(usuarioExternoDao.getUsuarioExternoByIdentificador(session, "ITU1"));
+		return usuarioExterno;
+	}
+	
+	public UsuarioExternoView getUsuarioExternoByIdentificador(Session session, String identificador) {
+		UsuarioExternoView usuarioExterno = getViewFromUsuarioExterno(usuarioExternoDao.getUsuarioExternoByIdentificador(session, identificador));
 		return usuarioExterno;
 	}
 	
@@ -73,7 +76,7 @@ public class AltaUsuarioService {
 		view.setNifPasaporte(usuarioExterno.getNifPasaporte());
 		view.setObservaciones(usuarioExterno.getObservaciones());
 		view.setTelefono(usuarioExterno.getTelefono());
-//		view.setFoto(usuarioExterno.getFoto());
+		view.setFoto(usuarioExterno.getFoto());
 		return view;
 	}
 	
@@ -102,4 +105,5 @@ public class AltaUsuarioService {
 //		usuarioExterno.setFoto(view.getFoto());
 		return usuarioExterno;
 	}
+
 }

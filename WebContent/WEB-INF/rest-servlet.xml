@@ -12,18 +12,14 @@
 	<context:component-scan base-package="com.codinghome.bibliouned" />
 	<context:annotation-config />
 	<mvc:annotation-driven/>
-
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="500000" />
-	</bean>
-
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />
-
+		
 </beans>

@@ -2,16 +2,14 @@
  * 
  */
 activePage = "consulta-usuarios";
-selectedUser = null;
 jQuery(document).ready(function(){
-//	$("#navigator").load("/navigation");
-	
-	$("#modify-user1").click(function(){
-		console.log(this);
-		console.log("HEEEYYYY");
-	});
+//	if ($("#identificador").val()){
+//		$("#searchForm").submit();
+//	}
 });
 
-function setSelectedUser(){
+function showModifyModal(){
+	console.log(this);
+	console.log("HEEEYYYY");
 	
 }

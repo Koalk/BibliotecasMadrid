@@ -2,25 +2,33 @@
  * 
  */
 activePage = "alta";
-fromController = true;
 jQuery(document).ready(function(){
 	setWebcam();
 	$("#takePictureButton").click(function(){takePicture(); return false;});
 	$("#newPictureButton").click(function(){switchCamPreview(true); return false;});
-	previewFoto();
-	fromController = false;
+	if ($("#foto").val()){
+		getDataUri($("#foto").val(), setFotoDataUrl);
+	}
+	else {
+		previewFoto();
+	}
 });
+
+function setFotoDataUrl(dataUri){
+	$("#foto").val(dataUri);
+	previewFoto();
+}
 
 function setWebcam(){
 	Webcam.set({
 		// live preview size
 		width: 320,
 		height: 240,
-		
+
 		// device capture size
 		dest_width: 640,
 		dest_height: 480,
-		
+
 		// final cropped size
 		crop_width: 480,
 		crop_height: 480,
@@ -34,7 +42,6 @@ function setWebcam(){
 function takePicture(){
 	Webcam.snap(function(dataUrl){
 		var imageData = dataUrl.replace(/^data\:image\/\w+\;base64\,/, '');
-//		var blobData = dataURItoBlob(dataUrl);
 		$("#foto").val(imageData);
 		previewFoto();
 	});
@@ -55,7 +62,6 @@ function switchCamPreview(toOn){
 		$("#newPictureButton").show();
 		$("#takePictureButton").hide();
 		$("#fotoPreview").show();
-		Webcam.reset();
 		$("#camPreview").hide();
 		$("#camContainer").hide();
 	}
@@ -65,22 +71,11 @@ function switchCamPreview(toOn){
 function previewFoto(){
 	if ($("#foto").val()){
 		var foto = $("#foto").val();
-//		var reader  = new FileReader();
-//		reader.onloadend = function () {
-//			$("#fotoPreview").attr("src",reader.result);
-//		}
 
 		if (foto) {
-//			if (fromController){
-				
-//				var blob = new Blob([foto], {type:"image/jpeg"})
-//				reader.readAsDataURL(blob);
-//			}
-//			else {
-				$("#fotoPreview").attr("src","data:image/jpeg;base64,"+foto);
-//			}
+			$("#fotoPreview").attr("src","data:image/jpeg;base64,"+foto);
 			switchCamPreview(false);
-			
+
 		} else {
 			$("#fotoPreview").attr("src","");
 			switchCamPreview(true);
@@ -110,4 +105,21 @@ function dataURItoBlob(dataURI) {
 	}
 
 	return new Blob([ia], {type:mimeString});
+}
+
+function getDataUri(url, callback) {
+	var image = new Image();
+
+	image.onload = function () {
+		var canvas = document.createElement('canvas');
+		canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+		canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+		canvas.getContext('2d').drawImage(this, 0, 0);
+
+		// Get raw image data
+		callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+	};
+
+	image.src = url;
 }

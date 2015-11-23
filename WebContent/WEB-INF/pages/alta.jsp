@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div class="content">
-		<form:form method="POST" action="alta" enctype="multipart/form-data" modelAttribute="externalUser">
+		<form:form method="POST" action="alta" modelAttribute="externalUser">
 			<div class="section">
 				<div class="container">
 					<div class="row">
@@ -165,7 +165,7 @@
 										id="takePictureButton" href="#" class="btn btn-default"
 										style="width: 200px">Tomar foto</a>
 								</div>
-								<form:input id="foto" path="foto" type="hidden" />
+								<form:input id="foto" path="foto" type="hidden"/>
 							</div>
 						</div>
 					</div>

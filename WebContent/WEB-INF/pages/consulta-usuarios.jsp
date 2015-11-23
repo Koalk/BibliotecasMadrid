@@ -65,7 +65,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<form:form method="POST" modelAttribute="externalUser">
+						<form:form id="searchForm" method="POST" modelAttribute="externalUser">
 							<div class="form-horizontal" role="form">
 								<div class="form-group">
 									<div class="form-inline">
@@ -89,7 +89,7 @@
 									<div class="form-inline">
 										<div class="col-sm-4">
 											<form:label path="identificador" class="control-label" style="min-width: 125px;">Número de usuario: </form:label>
-											<form:input type="text" class="form-control" path="identificador" placeholder="Número de usuario" />
+											<form:input id="identificador" type="text" class="form-control" path="identificador" placeholder="Número de usuario" />
 										</div>
 										<div class="col-sm-4">
 											<form:label path="nifPasaporte" class="control-label" style="min-width: 125px;">NIF/Pasaporte: </form:label>
@@ -154,8 +154,12 @@
 										<td>${user.mail}</td>
 										<td>${user.telefono}</td>
 										<td>${user.codigoPostal}</td>
-										<td id="modify-user1"><a class="btn btn-primary"
-											data-toggle="modal" data-target="#modify-user-modal">Modificar</a>
+										<td>
+											<a class="btn btn-primary"
+												data-toggle="modal" data-target="#modify-user-modal"
+												onClick="showModifyModal();return false;">
+												Modificar
+											</a>
 										</td>
 									</tr>
 								</c:forEach>
