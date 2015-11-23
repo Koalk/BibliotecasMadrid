@@ -1,5 +1,6 @@
 package com.codinghome.bibliouned.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -20,15 +21,31 @@ public class UsuarioExternoDao {
 	private static final Log log = LogFactory.getLog(UsuarioExternoDao.class);
 	private final String CADENA_VACIA = "";
 
-	public void persist(Session session, UsuarioExterno transientInstance) {
+	public void persist(Session session, UsuarioExterno usuarioExterno) {
 		log.debug("persisting UsuarioExterno instance");
 		try {
-			session.persist(transientInstance);
-			log.debug("persist successful");
+			if (usuarioExterno.getIdentificador() != null){
+				session.update(usuarioExterno);
+			}
+			else {
+				usuarioExterno.setCreateTime(new Date());
+				session.save(usuarioExterno);
+				String identificador = usuarioExterno.getBiblioteca().getIdentificador() + fillWithZero(usuarioExterno.getId(), 6);
+				usuarioExterno.setIdentificador(identificador);
+				session.update(usuarioExterno);
+			}
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;
 		}
+	}
+	
+	private String fillWithZero(Long n, Integer size){
+		String result = n.toString();
+		for (int i=0; i < size; i++){
+			result = "0"+result;
+		}
+		return result;
 	}
 
 	public List<UsuarioExterno> findAll(){
