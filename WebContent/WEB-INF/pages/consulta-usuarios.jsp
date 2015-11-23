@@ -23,7 +23,7 @@
 		<jsp:include page="navigation.jsp" />
 	</div>
 	<div class="modal fade" id="modify-user-modal">
-		<div class="modal-dialog">
+		<div class="modal-dialog" style="width:90%">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"

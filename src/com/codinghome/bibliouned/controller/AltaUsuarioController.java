@@ -82,9 +82,9 @@ public class AltaUsuarioController implements ServletContextAware{
 		return model;
 	}
 
-	@RequestMapping(value = "/fotos/{fotoLocation}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/fotos", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] getFoto(@PathVariable String fotoLocation)  {
+	public byte[] getFoto(@RequestParam(value="fotoLocation") String fotoLocation)  {
 		byte[] data = null;
 		try {
 			File file = new File(servletContext.getRealPath("/") + "../../fotos/"+fotoLocation);

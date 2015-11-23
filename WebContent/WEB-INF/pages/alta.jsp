@@ -22,7 +22,7 @@
 </head>
 <body>
 	<div id="navigator">
-		<c:if test="${empty userIdentificador}">
+		<c:if test="${empty externalUser.identificador}">
 			<jsp:include page="navigation.jsp" />
 		</c:if>
 <!-- 		<div style="width: 100%;"> -->
