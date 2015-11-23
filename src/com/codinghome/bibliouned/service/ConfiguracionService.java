@@ -41,6 +41,7 @@ public class ConfiguracionService {
 		UsuarioView view = new UsuarioView();
 		view.setUsuario(usuario.getUsuario());
 		view.setPassword(usuario.getPassword());
+		view.setConfirmPassword(usuario.getPassword());
 		return view;
 	}
 	

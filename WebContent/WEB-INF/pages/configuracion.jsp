@@ -38,11 +38,11 @@
 											</div>
 											<div class="col-md-12">
 												<form:label path="password" style="padding-right: 10px">Contraseña</form:label>
-												<form:input type="text" class="form-control" path="password" size="20" />
+												<form:input type="password" class="form-control" path="password" size="20" />
 											</div>
 											<div class="col-md-12">
 												<form:label path="confirmPassword" style="padding-right: 10px">Confirmar contraseña</form:label>
-												<form:input type="text" class="form-control" path="confirmPassword" size="20" />
+												<form:input type="password" class="form-control" path="confirmPassword" size="20" />
 											</div>
 											<div class="col-md-12,row text-right" style="padding-right: 10%">
 												<input type="submit" class="btn btn-primary" id="search" value="Guardar" />
