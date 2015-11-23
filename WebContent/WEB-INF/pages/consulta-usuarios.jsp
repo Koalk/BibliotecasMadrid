@@ -34,9 +34,6 @@
 					<iframe id="modifyUserFrame" width="100%" height="100%" seamless="seamless" style="border:none;overflow:hidden;"></iframe>
 				</div>
 				<div class="modal-footer">
-<!-- 					<a class="btn btn-default" data-dismiss="modal">Cerrar</a> <a -->
-<!-- 						class="btn btn-primary">Editar</a> <a class="btn btn-primary" -->
-<!-- 						style="display: none">Guardar cambios</a> -->
 				</div>
 			</div>
 		</div>

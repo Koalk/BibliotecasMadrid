@@ -6,8 +6,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-
-
 public class UsuarioExternoView {
 	
 	private String identificador;
@@ -65,6 +63,7 @@ public class UsuarioExternoView {
 		this.apellido2 = apellido2;
 	}
 	
+	@NotEmpty(message = "Campo obligatorio.")
 	@Size(max = 15, message="No puede superar 15 caracteres.")
 	public String getNifPasaporte() {
 		return nifPasaporte;

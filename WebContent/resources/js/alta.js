@@ -6,7 +6,7 @@ jQuery(document).ready(function(){
 	setWebcam();
 	$("#takePictureButton").click(function(){takePicture(); return false;});
 	$("#newPictureButton").click(function(){switchCamPreview(true); return false;});
-	if ($("#foto").val()){
+	if ($("#foto").val() && $("#foto").val().indexOf(".jpg")>=0){
 		getDataUri($("#foto").val(), setFotoDataUrl);
 	}
 	else {
@@ -32,6 +32,7 @@ jQuery(document).ready(function(){
 function enableForm(){
 	$("#altaForm :input").prop("disabled", false);
 	$("#modifyButton").hide();
+	$("#newPictureButton").show();
 	previewFoto();
 }
 

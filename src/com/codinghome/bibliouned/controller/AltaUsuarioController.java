@@ -3,10 +3,6 @@ package com.codinghome.bibliouned.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -110,10 +106,9 @@ public class AltaUsuarioController implements ServletContextAware{
 			@Valid @ModelAttribute(value = "externalUser") UsuarioExternoView externalUser, 
 			BindingResult result) {
 		ModelAndView model = null;
-		if (result.hasErrors()){
+		if (!result.hasErrors()){
 			Session session = this.sessionFactory.openSession();
 			try {
-				Map<String,String> errors = validateUsuarioExterno(externalUser);
 				byte[] foto = null;
 				if (externalUser.getFoto() == null || (foto = Base64.decode(externalUser.getFoto().getBytes())) == null || foto.length <= 0){
 					ObjectError error = new ObjectError("foto", "Es obligatorio añadir una foto.");
@@ -121,7 +116,7 @@ public class AltaUsuarioController implements ServletContextAware{
 				}
 				model = new ModelAndView();
 				String pathFoto = null;
-				if (errors.isEmpty() && (pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, result)) != null){
+				if ((pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, result)) != null){
 					Transaction tx = session.beginTransaction();
 					UsuarioExterno usuarioExterno = altaUsuarioService.getUsuarioExternoFromView(session, principal.getName(), externalUser);
 					usuarioExterno.setFoto(pathFoto);
@@ -132,7 +127,6 @@ public class AltaUsuarioController implements ServletContextAware{
 				else {
 					model.addObject("externalUser",externalUser);
 					model.setViewName("alta");
-					model.addAllObjects(errors);
 				}
 			} finally {
 				session.close();
@@ -160,53 +154,6 @@ public class AltaUsuarioController implements ServletContextAware{
 			errorData.addError(error);
 		}
 		return result;
-	}
-
-	private Map<String,String> validateUsuarioExterno(UsuarioExternoView usuarioExterno) {
-		Map<String,String> errors = new HashMap<>();
-		if (usuarioExterno.getNombre() == null || usuarioExterno.getNombre().isEmpty()){
-			errors.put("errornombre","Campo obligatorio");
-		}
-		if (usuarioExterno.getApellido1() == null || usuarioExterno.getApellido1().isEmpty()){
-			errors.put("errorapellido1","Campo obligatorio");
-		}
-		if (usuarioExterno.getNifPasaporte() == null){
-			errors.put("errornifPasaporte","Campo obligatorio");
-		}
-		if (usuarioExterno.getFoto() == null){
-			errors.put("errorfoto","Campo obligatorio");
-		}
-		if (!validateCodigoPostal(usuarioExterno.getCodigoPostal())){
-			errors.put("errorcodigoPostal","Valor incorrecto");
-		}
-		if (!validateMail(usuarioExterno.getMail())){
-			errors.put("errormail","Valor incorrecto");
-		}
-		return errors;
-	}
-
-	private boolean validateCodigoPostal(String codigoPostal) {
-		Boolean result = false;
-		if (codigoPostal != null && codigoPostal.length() == 5){
-			try {
-				Integer num = Integer.parseInt(codigoPostal);
-				if (num < 52999 && num > 1001){
-					result = true;
-				}
-			}
-			catch (NumberFormatException e){}
-		}
-		else if (codigoPostal == null || codigoPostal.isEmpty()){
-			result = true;
-		}
-		return result;
-	}
-
-	private boolean validateMail(String mail) {
-		Pattern pattern = Pattern.compile("^([_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-\\+]+)*@"
-				+ "[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*\\.[A-Za-z]{2,5})?$");
-		Matcher matcher = pattern.matcher(mail); 
-		return matcher.matches();
 	}
 
 }

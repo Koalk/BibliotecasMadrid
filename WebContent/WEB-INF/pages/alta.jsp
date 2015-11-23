@@ -150,10 +150,10 @@
 								<div id="camPreview" style="height: 350px; width: 290px;"></div>
 							</div>
 							<div align="center" style="padding-top: 15%;">
-								<form:errors path="foto" cssClass="error-field"/>
 								<img id="fotoPreview" class="img-responsive img-rounded"
 									src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
 									style="height: 290px; width: 290px; display: none;">
+								<form:errors path="foto" cssClass="error-field"/>
 								<div class="btn-group btn-group-lg" style="padding-top: 20px;">
 									<a id="newPictureButton" href="#" class="btn btn-default"
 										style="width: 200px; display: none;">Nueva foto</a> <a
