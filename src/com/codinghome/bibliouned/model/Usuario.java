@@ -32,7 +32,7 @@ public class Usuario implements java.io.Serializable {
 	private String email;
 	private String password;
 	private Date createTime;
-	private Set<UserRole> userRoles = new HashSet<UserRole>(0); 
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 	private Set<UsuarioExterno> usuarioexternos = new HashSet<>(0);
 
 	public Usuario() {

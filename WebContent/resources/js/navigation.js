@@ -3,7 +3,5 @@
  */
 jQuery(document).ready(function(){
 	$("#"+activePage).addClass("active");
-	console.log($("#"+activePage).children().attr("href"));
 	$("#"+activePage).children().attr("href","#");
-	console.log($("#"+activePage).children().attr("href"));
 });

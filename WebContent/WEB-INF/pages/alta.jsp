@@ -25,29 +25,9 @@
 		<c:if test="${empty externalUser.identificador}">
 			<jsp:include page="navigation.jsp" />
 		</c:if>
-<!-- 		<div style="width: 100%;"> -->
-<!-- 			<span style="position: absolute; top: 0px; left: 0px; z-index: 10;"> -->
-<!-- 				<img height="80" alt="UNED Madrid" -->
-<%-- 				src="<c:url value="/resources/img/logo.jpg" />" /> --%>
-<!-- 			</span> -->
-<!-- 			<div class="navbar navbar-default" -->
-<!-- 				style="margin-top: 30px; position: absolute; left: 130px; overflow: hidden; width: 85%;"> -->
-<!-- 				<div class="container"> -->
-<!-- 					<div class="collapse navbar-collapse" id="navbar-ex-collapse"> -->
-<!-- 						<ul class="nav navbar-nav navbar-left" style="width: 100%;"> -->
-<!-- 							<li id="consulta-usuarios"><a href="consulta-usuarios">Consulta -->
-<!-- 									de Usuarios</a></li> -->
-<!-- 							<li id="alta" class="active"><a href="">Alta de usuarios</a></li> -->
-<!-- 							<li id="configuracion"><a href="#">Configuración</a></li> -->
-<!-- 							<li id="salir"><a href="login?logout">Salir</a></li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
 	</div>
-	<div class="content">
-		<form:form method="POST" action="alta" modelAttribute="externalUser">
+	<div id="contentDiv" class="content">
+		<form:form id="altaForm" method="POST" action="alta" modelAttribute="externalUser">
 			<div class="section">
 				<div class="container">
 					<div class="row">
@@ -55,9 +35,9 @@
 							style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
 							<div style="display: inline;" class="col-md-5">
 								<form:label path="identificador" style="padding-right: 10px">Identificador:</form:label>
-								<form:input path="identificador" size="20" readonly="true" />
+								<form:input id="identificadorField" path="identificador" size="20" readonly="true" />
 							</div>
-							<div class="col-md-7" style="display: inline;">
+							<div class="col-md-7" style="display: inline; white-space: nowrap;" >
 								<form:label path="biblioteca" style="padding-right: 10px;">Biblioteca de alta:</form:label>
 								<div style="display: inline; width: 100;">
 									<form:input path="biblioteca" style="width: auto;"
@@ -72,7 +52,7 @@
 										<form:label path="nombre">Nombre:</form:label>
 									</div>
 									<div>
-										<form:input path="nombre" size="64"/>
+										<form:input path="nombre" size="64" />
 									</div>
 								</div>
 								<div class="form-field">
@@ -80,7 +60,7 @@
 										<form:label path="apellido1">Primer apellido:</form:label>
 									</div>
 									<div>
-										<form:input path="apellido1" size="64"/>
+										<form:input path="apellido1" size="64" />
 									</div>
 								</div>
 								<div class="form-field">
@@ -88,15 +68,15 @@
 										<form:label path="apellido2">Segundo apellido:</form:label>
 									</div>
 									<div>
-										<form:input path="apellido2" size="64"/>
+										<form:input path="apellido2" size="64" />
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
-										<form:label path="localidad" >Localidad:</form:label>
+										<form:label path="localidad">Localidad:</form:label>
 									</div>
 									<div>
-										<form:input path="localidad" size="64"/>
+										<form:input path="localidad" size="64" />
 									</div>
 								</div>
 							</div>
@@ -106,7 +86,7 @@
 										<form:label path="nifPasaporte">Nif/Pasaporte:</form:label>
 									</div>
 									<div>
-										<form:input path="nifPasaporte"  size="16"/>
+										<form:input path="nifPasaporte" size="16" />
 									</div>
 								</div>
 								<div class="form-field">
@@ -114,7 +94,7 @@
 										<form:label path="mail">Correo electrónico:</form:label>
 									</div>
 									<div>
-										<form:input path="mail"  size="128"/>
+										<form:input path="mail" size="128" />
 									</div>
 								</div>
 								<div class="form-field">
@@ -122,7 +102,7 @@
 										<form:label path="telefono">Teléfono:</form:label>
 									</div>
 									<div>
-										<form:input path="telefono" size="16"/>
+										<form:input path="telefono" size="16" />
 									</div>
 								</div>
 								<div class="form-field">
@@ -130,7 +110,7 @@
 										<form:label path="codigoPostal">Código postal:</form:label>
 									</div>
 									<div>
-										<form:input path="codigoPostal" size="5"/>
+										<form:input path="codigoPostal" size="5" />
 									</div>
 								</div>
 							</div>
@@ -140,7 +120,7 @@
 										<form:label path="direccion">Dirección:</form:label>
 									</div>
 									<div>
-										<form:input path="direccion" size="256"/>
+										<form:input path="direccion" size="256" />
 									</div>
 								</div>
 								<div class="form-field">
@@ -155,7 +135,8 @@
 							</div>
 						</div>
 						<div class="col-md-4" style="display: table;">
-							<div id="camContainer" align="center" style="padding-top: 15%;height: 350px;width: 290px;overflow:hidden;">
+							<div id="camContainer" align="center"
+								style="padding-top: 15%; height: 350px; width: 290px; overflow: hidden;">
 								<div id="camPreview" style="height: 350px; width: 290px;"></div>
 							</div>
 							<div align="center" style="padding-top: 15%;">
@@ -168,7 +149,7 @@
 										id="takePictureButton" href="#" class="btn btn-default"
 										style="width: 200px">Tomar foto</a>
 								</div>
-								<form:input id="foto" path="foto" type="hidden"/>
+								<form:input id="foto" path="foto" type="hidden" />
 							</div>
 						</div>
 					</div>
@@ -178,13 +159,17 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6" style="padding-top: 10px">
-							<input type="submit" class="btn btn-block btn-lg btn-primary"
+							<input id="saveButton" type="submit" class="btn btn-block btn-lg btn-primary"
 								style="height: 60px; font-size: 25px; padding-top: 10px;"
 								value="Guardar" />
 						</div>
 						<div class="col-md-6" style="padding-top: 10px">
-							<a class="btn btn-block btn-lg btn-warning"
+							<a id="discardButton" class="btn btn-block btn-lg btn-warning"
 								style="height: 60px; font-size: 25px; padding-top: 10px;">Descartar</a>
+							<input id="modifyButton" type="button"
+								class="btn btn-block btn-lg btn-primary"
+								style="height: 60px; font-size: 25px; padding-top: 10px;"
+								value="Modificar" />
 						</div>
 					</div>
 				</div>

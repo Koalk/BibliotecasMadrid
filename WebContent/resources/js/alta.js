@@ -12,7 +12,28 @@ jQuery(document).ready(function(){
 	else {
 		previewFoto();
 	}
+	var identificador = $("#identificadorField").val();
+	if (identificador){
+		$("#contentDiv").css("padding-top","10px")
+		$("#altaForm :input").prop("disabled", true);
+		$("#takePictureButton").hide();
+		$("#newPictureButton").hide();
+		$("#modifyButton").click(function(){enableForm();return false;});
+		$("#saveButton").prop("disabled",true);
+		$("#modifyButton").prop("disabled",false);
+		$("#discardButton").hide();
+	}
+	else {
+		$("#modifyButton").hide();
+		$("#discardButton").prop("href","consulta-usuarios");
+	}
 });
+
+function enableForm(){
+	$("#altaForm :input").prop("disabled", false);
+	$("#modifyButton").hide();
+	previewFoto();
+}
 
 function setFotoDataUrl(dataUri){
 	$("#foto").val(dataUri);
@@ -50,8 +71,11 @@ function takePicture(){
 
 function switchCamPreview(toOn){
 	if (toOn){
-		$("#newPictureButton").hide();
-		$("#takePictureButton").show();
+		var identificador = $("#identificadorField").val();
+		if (identificador){
+			$("#newPictureButton").hide();
+			$("#takePictureButton").show();
+		}
 		$("#fotoPreview").hide();
 		$("#camContainer").show();
 		$("#camPreview").show();
@@ -59,8 +83,11 @@ function switchCamPreview(toOn){
 		$("#foto").val(null);
 	}
 	else {
-		$("#newPictureButton").show();
-		$("#takePictureButton").hide();
+		var identificador = $("#identificadorField").val();
+		if (!identificador){
+			$("#newPictureButton").show();
+			$("#takePictureButton").hide();
+		}
 		$("#fotoPreview").show();
 		$("#camPreview").hide();
 		$("#camContainer").hide();
