@@ -68,6 +68,8 @@
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/consulta-usuarios**"
 			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/configuracion"
+			access="hasRole('ROLE_USER')" />
 		<security:access-denied-handler
 			error-page="/403" />
 		<security:form-login 

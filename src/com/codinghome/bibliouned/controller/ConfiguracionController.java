@@ -89,7 +89,7 @@ public class ConfiguracionController implements ServletContextAware{
 				Usuario usuario = configuracionService.getUsuarioFromView(session, principal.getName(), user);
 				configuracionService.persist(session,usuario);
 				tx.commit();
-				model.setViewName("redirect:consulta-usuarios?userIdentificador="+user.getUsuario());
+				model.setViewName("login");
 			}
 			else {
 				model.addObject("user",user);
