@@ -8,14 +8,18 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,6 +56,11 @@ public class ConfiguracionController implements ServletContextAware{
 		this.servletContext = servletContext;
 	}
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView newEmployee(@RequestParam(value = "userIdentificador", required = false)String identificador, final HttpServletRequest request, Principal principal) {
 		Session session = sessionFactory.openSession();
@@ -76,29 +85,35 @@ public class ConfiguracionController implements ServletContextAware{
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView saveUsuarioExterno(final HttpServletRequest request, 
 			Principal principal, 
-			@ModelAttribute(value = "user") UsuarioView user, 
+			@Valid @ModelAttribute(value = "user") UsuarioView user, 
 			BindingResult result) {
-		Session session = this.sessionFactory.openSession();
 		ModelAndView model = null;
-		
-		try {
-			Map<String,String> errors = validateUsuario(user);
-			model = new ModelAndView();
-			if (errors.isEmpty()){
-				Transaction tx = session.beginTransaction();
-				Usuario usuario = configuracionService.getUsuarioFromView(session, principal.getName(), user);
-				configuracionService.persist(session,usuario);
-				tx.commit();
-				model.setViewName("login");
+		if (!result.hasErrors()) {
+			Session session = this.sessionFactory.openSession();
+			try {
+				Map<String,String> errors = validateUsuario(user);
+				model = new ModelAndView();
+				if (errors.isEmpty()){
+					Transaction tx = session.beginTransaction();
+					Usuario usuario = configuracionService.getUsuarioFromView(session, principal.getName(), user);
+					configuracionService.persist(session,usuario);
+					tx.commit();
+					model.setViewName("login");
+				}
+				else {
+					model.addObject("user",user);
+					model.setViewName("configuracion");
+					model.addAllObjects(errors);
+				}
 			}
-			else {
-				model.addObject("user",user);
-				model.setViewName("configuracion");
-				model.addAllObjects(errors);
+			finally {
+				session.close();
 			}
 		}
-		finally {
-			session.close();
+		else {
+			model = new ModelAndView();
+			model.addObject("user",user);
+			model.setViewName("configuracion");
 		}
 		
 		return model;
@@ -106,16 +121,7 @@ public class ConfiguracionController implements ServletContextAware{
 
 	private Map<String,String> validateUsuario(UsuarioView user) {
 		Map<String,String> errors = new HashMap<>();
-		if (user.getUsuario() == null || user.getUsuario().isEmpty()){
-			errors.put("errorusuario","Campo obligatorio");
-		}
-		if (user.getPassword() == null || user.getPassword().isEmpty()){
-			errors.put("errorpassword","Campo obligatorio");
-		}
-		else if (user.getConfirmPassword() == null || user.getConfirmPassword().isEmpty()){
-			errors.put("errorpassword","Campo obligatorio");
-		}
-		else if (!user.getPassword().equals(user.getConfirmPassword())){
+		if (!user.getPassword().equals(user.getConfirmPassword())){
 			errors.put("errorpassword","La contraseña no coincide");
 		}
 		else if (!validatePassword(user.getPassword())) {
