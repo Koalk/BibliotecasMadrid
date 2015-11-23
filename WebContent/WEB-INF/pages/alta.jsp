@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div class="content">
-		<form:form method="POST" action="alta" modelAttribute="externalUser">
+		<form:form method="POST" action="alta" enctype="multipart/form-data" modelAttribute="externalUser">
 			<div class="section">
 				<div class="container">
 					<div class="row">
@@ -69,7 +69,7 @@
 										<form:label path="nombre">Nombre:</form:label>
 									</div>
 									<div>
-										<form:input path="nombre" />
+										<form:input path="nombre" size="64"/>
 									</div>
 								</div>
 								<div class="form-field">
@@ -77,7 +77,7 @@
 										<form:label path="apellido1">Primer apellido:</form:label>
 									</div>
 									<div>
-										<form:input path="apellido1" />
+										<form:input path="apellido1" size="64"/>
 									</div>
 								</div>
 								<div class="form-field">
@@ -85,15 +85,15 @@
 										<form:label path="apellido2">Segundo apellido:</form:label>
 									</div>
 									<div>
-										<form:input path="apellido2" />
+										<form:input path="apellido2" size="64"/>
 									</div>
 								</div>
 								<div class="form-field">
 									<div>
-										<form:label path="localidad">Localidad:</form:label>
+										<form:label path="localidad" >Localidad:</form:label>
 									</div>
 									<div>
-										<form:input path="localidad" />
+										<form:input path="localidad" size="64"/>
 									</div>
 								</div>
 							</div>
@@ -103,7 +103,7 @@
 										<form:label path="nifPasaporte">Nif/Pasaporte:</form:label>
 									</div>
 									<div>
-										<form:input path="nifPasaporte" />
+										<form:input path="nifPasaporte"  size="16"/>
 									</div>
 								</div>
 								<div class="form-field">
@@ -111,7 +111,7 @@
 										<form:label path="mail">Correo electrónico:</form:label>
 									</div>
 									<div>
-										<form:input path="mail" />
+										<form:input path="mail"  size="128"/>
 									</div>
 								</div>
 								<div class="form-field">
@@ -119,7 +119,7 @@
 										<form:label path="telefono">Teléfono:</form:label>
 									</div>
 									<div>
-										<form:input path="telefono" />
+										<form:input path="telefono" size="16"/>
 									</div>
 								</div>
 								<div class="form-field">
@@ -127,7 +127,7 @@
 										<form:label path="codigoPostal">Código postal:</form:label>
 									</div>
 									<div>
-										<form:input path="codigoPostal" />
+										<form:input path="codigoPostal" size="5"/>
 									</div>
 								</div>
 							</div>
@@ -137,7 +137,7 @@
 										<form:label path="direccion">Dirección:</form:label>
 									</div>
 									<div>
-										<form:input path="direccion" />
+										<form:input path="direccion" size="256"/>
 									</div>
 								</div>
 								<div class="form-field">
@@ -158,7 +158,7 @@
 							<div align="center" style="padding-top: 15%;">
 								<img id="fotoPreview" class="img-responsive img-rounded"
 									src="https://www.uchceu.es/directorio/imagenes/silueta_hombre.gif"
-									style="height: 350px; width: 290px; display: none;">
+									style="height: 290px; width: 290px; display: none;">
 								<div class="btn-group btn-group-lg" style="padding-top: 20px;">
 									<a id="newPictureButton" href="#" class="btn btn-default"
 										style="width: 200px; display: none;">Nueva foto</a> <a

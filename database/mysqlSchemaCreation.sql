@@ -11,8 +11,8 @@ USE `bibliouned` ;
 CREATE TABLE IF NOT EXISTS `bibliouned`.`Biblioteca` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
   `identificador` VARCHAR(45) NULL,
-  `Nombre` VARCHAR(255) NULL,
-  `Direccion` VARCHAR(255) NULL,
+  `Nombre` VARCHAR(256) NULL,
+  `Direccion` VARCHAR(256) NULL,
   PRIMARY KEY (`id`));
 
 CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`Biblioteca` (`id` ASC);
@@ -24,9 +24,9 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`Biblioteca` (`id` ASC);
 CREATE TABLE IF NOT EXISTS `bibliouned`.`User` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(16) NOT NULL,
-  `email` VARCHAR(255) NULL,
+  `email` VARCHAR(256) NULL,
   `active` BOOLEAN NOT NULL DEFAULT 1,
-  `password` VARCHAR(60) NOT NULL,
+  `password` VARCHAR(64) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `Biblioteca_id` BIGINT(10) NULL,
   PRIMARY KEY (`id`),
@@ -54,22 +54,22 @@ CREATE TABLE IF NOT EXISTS `bibliouned`.`UserRoles` (
 CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`UserRoles` (`id` ASC);
     
 -- -----------------------------------------------------
--- Table `bibliouned`.`UserExterno`
+-- Table `bibliouned`.`UsuarioExterno`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bibliouned`.`UsuarioExterno` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
   `identificador` VARCHAR(15) NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido1` VARCHAR(45) NULL,
-  `apellido2` VARCHAR(45) NULL,
-  `nif_pasaporte` VARCHAR(45) NULL,
-  `mail` VARCHAR(255) NULL,
+  `nombre` VARCHAR(64) NULL,
+  `apellido1` VARCHAR(64) NULL,
+  `apellido2` VARCHAR(64) NULL,
+  `nif_pasaporte` VARCHAR(15) NULL,
+  `mail` VARCHAR(128) NULL,
   `telefono` VARCHAR(15) NULL,
-  `localidad` VARCHAR(45) NULL,
-  `codigopostal` VARCHAR(45) NULL,
-  `direccion` VARCHAR(45) NULL,
-  `observaciones` VARCHAR(255) NULL,
-  `foto` blob NULL,
+  `localidad` VARCHAR(64) NULL,
+  `codigopostal` VARCHAR(5) NULL,
+  `direccion` VARCHAR(256) NULL,
+  `observaciones` VARCHAR(256) NULL,
+  `foto` VARCHAR(256) NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `Biblioteca_id` BIGINT(10) NULL,
   `User_id` BIGINT(10) NULL,
@@ -86,7 +86,7 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`UsuarioExterno` (`id` ASC);
 CREATE INDEX `fk_UsuarioExterno_Biblioteca_idx` ON `bibliouned`.`UsuarioExterno` (`Biblioteca_id` ASC);
 
 CREATE INDEX `fk_UsuarioExterno_User_idx` ON `bibliouned`.`UsuarioExterno` (`User_id` ASC);
--- Prueba git
+
 INSERT INTO BIBLIOTECA (Identificador,Nombre,Direccion) VALUES ('ITU','Iturralde','asdf');
 INSERT INTO USER (Usuario,Password,Active,Biblioteca_id) VALUES ('asdf','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.','1','1');  -- Usuario asdf con pass 123456
 INSERT INTO USERROLES (User_id,Role) VALUES(1,'ROLE_USER');

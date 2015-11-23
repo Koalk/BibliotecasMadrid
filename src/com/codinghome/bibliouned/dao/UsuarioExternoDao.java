@@ -100,6 +100,7 @@ public class UsuarioExternoDao {
 		if (usuarioExterno.getLocalidad() != null && !CADENA_VACIA.equals(usuarioExterno.getLocalidad())) {
 			crit.add(Restrictions.eq("localidad", usuarioExterno.getLocalidad()));
 		}
+		@SuppressWarnings("unchecked")
 		List<UsuarioExterno> results = (List<UsuarioExterno>) crit.list();
 //		UsuarioExterno usuarioExterno = (UsuarioExterno) crit.uniqueResult();
 		return results;

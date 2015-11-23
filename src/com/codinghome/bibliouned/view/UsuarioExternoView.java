@@ -2,6 +2,7 @@ package com.codinghome.bibliouned.view;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
 public class UsuarioExternoView {
 	
 	private String identificador;

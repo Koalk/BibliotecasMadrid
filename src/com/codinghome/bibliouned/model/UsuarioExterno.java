@@ -34,11 +34,10 @@ public class UsuarioExterno implements java.io.Serializable {
 	private String codigoPostal;
 	private String direccion;
 	private String observaciones;
-	private byte[] foto;
+	private String foto;
 	private Date createTime;
 
-	public UsuarioExterno() {
-	}
+	public UsuarioExterno() {}
 
 	public UsuarioExterno(Biblioteca biblioteca, Usuario usuario,
 			String identificador, String nombre, String apellido1,
@@ -101,7 +100,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.identificador = identificador;
 	}
 
-	@Column(name = "nombre", length = 45)
+	@Column(name = "nombre", length = 64)
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -110,7 +109,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "apellido1", length = 45)
+	@Column(name = "apellido1", length = 64)
 	public String getApellido1() {
 		return this.apellido1;
 	}
@@ -119,7 +118,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.apellido1 = apellido1;
 	}
 
-	@Column(name = "apellido2", length = 45)
+	@Column(name = "apellido2", length = 64)
 	public String getApellido2() {
 		return this.apellido2;
 	}
@@ -128,7 +127,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.apellido2 = apellido2;
 	}
 
-	@Column(name = "nif_pasaporte", length = 45)
+	@Column(name = "nif_pasaporte", length = 15)
 	public String getNifPasaporte() {
 		return this.nifPasaporte;
 	}
@@ -137,7 +136,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.nifPasaporte = nifPasaporte;
 	}
 
-	@Column(name = "mail")
+	@Column(name = "mail", length = 128)
 	public String getMail() {
 		return this.mail;
 	}
@@ -155,7 +154,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.telefono = telefono;
 	}
 
-	@Column(name = "localidad", length = 45)
+	@Column(name = "localidad", length = 64)
 	public String getLocalidad() {
 		return this.localidad;
 	}
@@ -164,7 +163,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.localidad = localidad;
 	}
 
-	@Column(name = "codigopostal", length = 45)
+	@Column(name = "codigopostal", length = 5)
 	public String getCodigoPostal() {
 		return this.codigoPostal;
 	}
@@ -173,7 +172,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.codigoPostal = codigopostal;
 	}
 
-	@Column(name = "direccion", length = 45)
+	@Column(name = "direccion", length = 256)
 	public String getDireccion() {
 		return this.direccion;
 	}
@@ -182,7 +181,7 @@ public class UsuarioExterno implements java.io.Serializable {
 		this.direccion = direccion;
 	}
 
-	@Column(name = "observaciones")
+	@Column(name = "observaciones", length = 256)
 	public String getObservaciones() {
 		return this.observaciones;
 	}
@@ -192,11 +191,11 @@ public class UsuarioExterno implements java.io.Serializable {
 	}
 
 	@Column(name = "foto")
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 

@@ -2,23 +2,28 @@
  * 
  */
 activePage = "alta";
-
+fromController = true;
 jQuery(document).ready(function(){
 	setWebcam();
 	$("#takePictureButton").click(function(){takePicture(); return false;});
 	$("#newPictureButton").click(function(){switchCamPreview(true); return false;});
 	previewFoto();
+	fromController = false;
 });
 
 function setWebcam(){
 	Webcam.set({
 		// live preview size
-		width: 290,
-		height: 350,
+		width: 320,
+		height: 240,
+		
+		// device capture size
+		dest_width: 640,
+		dest_height: 480,
 		
 		// final cropped size
-		crop_width: 290,
-		crop_height: 350,
+		crop_width: 480,
+		crop_height: 480,
 
 		// flip horizontal (mirror mode)
 		flip_horiz: true
@@ -62,14 +67,19 @@ function previewFoto(){
 		var foto = $("#foto").val();
 //		var reader  = new FileReader();
 //		reader.onloadend = function () {
-//			$("#fotoPreview").attr("src",dataUrl);
-//			switchCamPreview(false);
+//			$("#fotoPreview").attr("src",reader.result);
 //		}
 
 		if (foto) {
-			$("#fotoPreview").attr("src","data:image/jpeg;base64,"+foto);
+//			if (fromController){
+				
+//				var blob = new Blob([foto], {type:"image/jpeg"})
+//				reader.readAsDataURL(blob);
+//			}
+//			else {
+				$("#fotoPreview").attr("src","data:image/jpeg;base64,"+foto);
+//			}
 			switchCamPreview(false);
-//			reader.readAsDataURL(foto);
 			
 		} else {
 			$("#fotoPreview").attr("src","");

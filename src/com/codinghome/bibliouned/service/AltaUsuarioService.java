@@ -73,6 +73,7 @@ public class AltaUsuarioService {
 		view.setNifPasaporte(usuarioExterno.getNifPasaporte());
 		view.setObservaciones(usuarioExterno.getObservaciones());
 		view.setTelefono(usuarioExterno.getTelefono());
+//		view.setFoto(usuarioExterno.getFoto());
 		return view;
 	}
 	
@@ -98,6 +99,7 @@ public class AltaUsuarioService {
 		usuarioExterno.setNifPasaporte(view.getNifPasaporte());
 		usuarioExterno.setObservaciones(view.getObservaciones());
 		usuarioExterno.setTelefono(view.getTelefono());
+//		usuarioExterno.setFoto(view.getFoto());
 		return usuarioExterno;
 	}
 }
