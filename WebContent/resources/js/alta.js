@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
 		$("#modifyButton").prop("disabled",false);
 		$("#discardButton").hide();
 	}
-	else if ($('#allErrors').children().length != 0){
+	else if ($("#identificadorField").val() && $('#allErrors').children().length != 0){
 		$("#contentDiv").css("padding-top","10px")
 		$("#discardButton").hide();
 		$("#modifyButton").hide();
