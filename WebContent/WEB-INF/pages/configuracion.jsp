@@ -13,8 +13,8 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/configuracion.css" />" rel="stylesheet"
-	type="text/css">
+<link href="<c:url value="/resources/css/configuracion.css" />"
+	rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="<c:url value="/resources/js/configuracion.js" />"></script>
 </head>
@@ -26,36 +26,72 @@
 		<div class="section">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-						<form:form method="POST" action="configuracion" modelAttribute="user">
-							<div class="form-horizontal" role="form">
-								<div class="form-group">
-<!-- 									<div class="form-inline"> -->
-										<div class="col-md-12" style="padding-bottom: 20px; padding-left: 20px;">
-											<div class="col-md-12">
-												<form:label path="usuario" style="padding-right: 10px">Nombre de usuario: </form:label>
-												<form:errors path="usuario" cssClass="error-field"/>
-												<form:input type="text" class="form-control" path="usuario" size="20" />
-											</div>
-											<div class="col-md-12">
-												<form:label path="password" style="padding-right: 10px">Contraseña: </form:label>
-												<form:errors path="password" cssClass="error-field"/>
-												<form:input type="password" class="form-control" path="password" size="20" />
-											</div>
-											<div class="col-md-12">
-												<form:label path="confirmPassword" style="padding-right: 10px">Confirmar contraseña: </form:label>
-												<form:errors path="confirmPassword" cssClass="error-field"/>
-												<form:input type="password" class="form-control" path="confirmPassword" size="20" />
-											</div>
-											<div class="col-md-12,row text-right" style="padding-right: 10%">
-												<input type="submit" class="btn btn-primary" id="search" value="Guardar" />
-											</div>
-										</div>
-<!-- 									</div> -->
+					<form:form method="POST" action="configuracion"
+						modelAttribute="user">
+						<div class="col-md-12" role="form">
+							<div class="form-group">
+								<div class="col-md-6"
+									style="padding-bottom: 20px; padding-left: 20px;">
+									<div class="form-field">
+										<form:label path="nombre" style="padding-right: 10px">Nombre: </form:label>
+										<form:input type="text" class="form-control" path="nombre"
+											maxlength="64" />
+										<form:errors path="nombre" cssClass="error-field" />
+									</div>
+									<div class="form-field">
+										<form:label path="apellidos" style="padding-right: 10px">Apellidos: </form:label>
+										<form:input type="text" class="form-control" path="apellidos"
+											maxlength="128" />
+										<form:errors path="apellidos" cssClass="error-field" />
+									</div>
+									<div class="form-field">
+										<form:label path="mail" style="padding-right: 10px">Correo electrónico: </form:label>
+										<form:input type="text" class="form-control" path="mail"
+											maxlenght="256" />
+										<form:errors path="mail" cssClass="error-field" />
+									</div>
 								</div>
+								<div class="col-md-6"
+									style="padding-bottom: 20px; padding-left: 20px;">
+									<div class="form-field">
+										<form:label path="usuario" style="padding-right: 10px">Usuario de acceso: </form:label>
+										<form:input type="text" class="form-control" path="usuario"
+											maxlength="64" />
+										<form:errors path="usuario" cssClass="error-field" />
+									</div>
+									<div class="form-field">
+										<form:label path="password" style="padding-right: 10px">Contraseña: </form:label>
+										<form:password class="form-control" path="password"
+											maxlength="64" />
+										<form:errors path="password" cssClass="error-field" />
+									</div>
+									<div class="form-field">
+										<form:label path="newPassword" style="padding-right: 10px">Nueva contraseña: </form:label>
+										<form:password class="form-control" path="newPassword"
+											maxlenght="64" />
+										<form:errors path="newPassword" cssClass="error-field" />
+									</div>
+									<div class="form-field">
+										<form:label path="confirmPassword" style="padding-right: 10px">Confirmar contraseña: </form:label>
+										<form:password class="form-control" path="confirmPassword"
+											maxlenght="64" />
+										<form:errors path="confirmPassword" cssClass="error-field" />
+									</div>
+								</div>
+								<div class="col-md-4"></div>
+								<div class="col-md-4">
+									<div class="form-field text-right" style="padding-right: 10%">
+										<input type="submit" class="btn btn-primary" id="search"
+											value="Guardar" /> <label
+											style="color: grey; font-size: x-small;">*Al guardar
+											los cambios se saldrá de la aplicación para acceder con los
+											nuevos datos.</label>
+									</div>
+								</div>
+								<div class="col-md-4"></div>
 							</div>
-						</form:form>
-					</div>
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>

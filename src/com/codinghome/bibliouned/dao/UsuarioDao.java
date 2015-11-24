@@ -1,7 +1,5 @@
 package com.codinghome.bibliouned.dao;
 
-import java.util.Date;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -10,7 +8,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.codinghome.bibliouned.model.Usuario;
-import com.codinghome.bibliouned.model.UsuarioExterno;
 
 @Repository("usuarioDao")
 public class UsuarioDao {

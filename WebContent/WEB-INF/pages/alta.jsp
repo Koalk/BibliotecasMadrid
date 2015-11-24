@@ -166,6 +166,9 @@
 					</div>
 				</div>
 			</div>
+			<div id="allErrors" hidden="true">
+				<form:errors path="*"/>
+			</div>
 			<div class="section" style="position: relative; top: -20px">
 				<div class="container">
 					<div class="row">

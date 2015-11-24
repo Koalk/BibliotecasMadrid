@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codinghome.bibliouned.dao.UsuarioDao;
-import com.codinghome.bibliouned.model.Biblioteca;
 import com.codinghome.bibliouned.model.Usuario;
-import com.codinghome.bibliouned.model.UsuarioExterno;
-import com.codinghome.bibliouned.view.UsuarioExternoView;
 import com.codinghome.bibliouned.view.UsuarioView;
 
 @Service("configuracionService")
@@ -32,8 +29,8 @@ public class ConfiguracionService {
 		usuarioDao.persist(session,usuario);
 	}
 	
-	public UsuarioView getUsuarioByIdentificador(Session session, String identificador) {
-		UsuarioView usuario = getViewFromUsuario(usuarioDao.getUsuarioByUsername(session, identificador));
+	public UsuarioView getUsuarioByIdentificador(Session session, String userName) {
+		UsuarioView usuario = getViewFromUsuario(usuarioDao.getUsuarioByUsername(session, userName));
 		return usuario;
 	}
 	
@@ -41,18 +38,27 @@ public class ConfiguracionService {
 		UsuarioView view = new UsuarioView();
 		view.setUsuario(usuario.getUsuario());
 		view.setPassword(usuario.getPassword());
-		view.setConfirmPassword(usuario.getPassword());
+		view.setNombre(usuario.getNombre());
+		view.setApellidos(usuario.getApellidos());
+		view.setMail(usuario.getEmail());
 		return view;
 	}
 	
 	public Usuario getUsuarioFromView (Session session, String name, UsuarioView view){
 		Usuario usuario = null;
-		if (view.getUsuario()!= null && !view.getUsuario().isEmpty() && !view.getUsuario().equals("")){
-			usuario = usuarioDao.getUsuarioByUsername(session, view.getUsuario());
-		}
+		usuario = usuarioDao.getUsuarioByUsername(session, name);
 		usuario.setUsuario(view.getUsuario());
-		usuario.setPassword(view.getPassword());
+		usuario.setApellidos(view.getApellidos());
+		usuario.setEmail(view.getMail());
 		return usuario;
+	}
+
+	public boolean isDuplicatedUserName(Session session, String usuario) {
+		boolean result = false;
+		if (usuarioDao.getUsuarioByUsername(session, usuario) != null){
+			result = true;
+		}
+		return result;
 	}
 
 }

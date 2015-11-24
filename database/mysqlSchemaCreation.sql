@@ -23,7 +23,9 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `bibliouned`.`Biblioteca` (`id` ASC);
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bibliouned`.`User` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
-  `usuario` VARCHAR(16) NOT NULL,
+  `nombre` VARCHAR(64) NULL,
+  `apellidos` VARCHAR(128) NULL,
+  `usuario` VARCHAR(64) NOT NULL,
   `email` VARCHAR(256) NULL,
   `active` BOOLEAN NOT NULL DEFAULT 1,
   `password` VARCHAR(64) NOT NULL,
@@ -88,5 +90,5 @@ CREATE INDEX `fk_UsuarioExterno_Biblioteca_idx` ON `bibliouned`.`UsuarioExterno`
 CREATE INDEX `fk_UsuarioExterno_User_idx` ON `bibliouned`.`UsuarioExterno` (`User_id` ASC);
 
 INSERT INTO BIBLIOTECA (Identificador,Nombre,Direccion) VALUES ('ITU','Iturralde','asdf');
-INSERT INTO USER (Usuario,Password,Active,Biblioteca_id) VALUES ('asdf','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.','1','1');  -- Usuario asdf con pass 123456
+INSERT INTO USER (Nombre,Apellidos,Email,Usuario,Password,Active,Biblioteca_id) VALUES ('asdf','ghjk','jjj@asdf.com','prueba','$2a$10$Jq.5lT0D6V6baokkfO9nU.4cgXMeaz16xL/tBR9MMJ4rlZxtO1OP2','1','1');  -- Usuario asdf con pass 123456
 INSERT INTO USERROLES (User_id,Role) VALUES(1,'ROLE_USER');

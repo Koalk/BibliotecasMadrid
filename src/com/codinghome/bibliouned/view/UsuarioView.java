@@ -1,16 +1,48 @@
 package com.codinghome.bibliouned.view;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
 
 public class UsuarioView {
 	
+	private String nombre;
+	private String apellidos;
+	private String mail;
 	private String usuario;
 	private String password;
+	private String newPassword;
 	private String confirmPassword;
 	
 	public UsuarioView() {}
+	
+	@NotEmpty(message = "Campo obligatorio.")
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	@NotEmpty(message = "Campo obligatorio.")
+	public String getApellidos() {
+		return apellidos;
+	}
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+	
+	@Email
+	@NotEmpty(message = "Campo obligatorio.")
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 	
     @NotEmpty(message = "Campo obligatorio.")
 	public String getUsuario() {
@@ -19,14 +51,25 @@ public class UsuarioView {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+	
     @NotEmpty(message = "Campo obligatorio.")
+    @Size(min = 6, message = "")
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    @NotEmpty(message = "Campo obligatorio.")
+	
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres.")
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	
+    @Size(min = 6, message = "")
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}

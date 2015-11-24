@@ -1,5 +1,11 @@
 package com.codinghome.bibliouned.controller;
 
+import java.security.Principal;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,6 +21,8 @@ import com.codinghome.bibliouned.service.UserService;
 
 @Controller
 public class SecurityController {
+	
+	private static final Logger log = Logger.getLogger(SecurityController.class.getSimpleName());
 
 	@Autowired
 	private UserService userService;
@@ -26,7 +34,8 @@ public class SecurityController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(
 			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
+			@RequestParam(value = "logout", required = false) String logout,
+			final HttpServletRequest request, Principal principal) {
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
@@ -35,6 +44,11 @@ public class SecurityController {
 
 		if (logout != null) {
 			model.addObject("msg", "Su sesión se ha cerrado correctamente.");
+			try {
+				request.logout();
+			} catch (ServletException e) {
+				log.debug("Se ha intentando hacer logout del usuario "+ principal != null ? principal.getName() : "null" +" y ha habido un error.");
+			}
 		}
 		model.setViewName("login");
 		return model;

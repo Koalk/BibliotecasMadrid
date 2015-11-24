@@ -65,7 +65,7 @@ public class AltaUsuarioController implements ServletContextAware{
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView newEmployee(@RequestParam(value = "userIdentificador", required = false)String identificador, final HttpServletRequest request, Principal principal) {
+	public ModelAndView newExternalUser(@RequestParam(value = "userIdentificador", required = false)String identificador, final HttpServletRequest request, Principal principal) {
 		Session session = sessionFactory.openSession();
 		ModelAndView model = null;
 		try {
@@ -101,7 +101,7 @@ public class AltaUsuarioController implements ServletContextAware{
 		return data;
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView saveUsuarioExterno(final HttpServletRequest request, 
+	public ModelAndView saveExternalUser(final HttpServletRequest request, 
 			Principal principal, 
 			@Valid @ModelAttribute(value = "externalUser") UsuarioExternoView externalUser, 
 			BindingResult result) {

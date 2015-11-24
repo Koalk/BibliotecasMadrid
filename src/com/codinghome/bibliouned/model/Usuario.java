@@ -28,6 +28,8 @@ public class Usuario implements java.io.Serializable {
 
 	private Long id;
 	private Biblioteca biblioteca;
+	private String nombre;
+	private String apellidos;
 	private String usuario;
 	private String email;
 	private String password;
@@ -75,7 +77,25 @@ public class Usuario implements java.io.Serializable {
 		this.biblioteca = biblioteca;
 	}
 
-	@Column(name = "usuario", nullable = false, length = 16)
+	@Column(name = "nombre", length = 64)
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	@Column(name = "apellidos", length = 128)
+	public String getApellidos() {
+		return this.apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+	
+	@Column(name = "usuario", nullable = false, length = 64)
 	public String getUsuario() {
 		return this.usuario;
 	}

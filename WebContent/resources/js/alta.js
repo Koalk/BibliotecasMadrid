@@ -12,8 +12,7 @@ jQuery(document).ready(function(){
 	else {
 		previewFoto();
 	}
-	var identificador = $("#identificadorField").val();
-	if (identificador){
+	if ($("#identificadorField").val() && $('#allErrors').children().length == 0){
 		$("#contentDiv").css("padding-top","10px")
 		$("#altaForm :input").prop("disabled", true);
 		$("#takePictureButton").hide();
@@ -22,6 +21,11 @@ jQuery(document).ready(function(){
 		$("#saveButton").prop("disabled",true);
 		$("#modifyButton").prop("disabled",false);
 		$("#discardButton").hide();
+	}
+	else if ($('#allErrors').children().length != 0){
+		$("#contentDiv").css("padding-top","10px")
+		$("#discardButton").hide();
+		$("#modifyButton").hide();
 	}
 	else {
 		$("#modifyButton").hide();
