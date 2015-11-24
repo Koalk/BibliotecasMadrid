@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -77,28 +78,28 @@ public class UsuarioExternoDao {
 	public List<UsuarioExterno> getUsuariosExternosFiltrados(Session session, UsuarioExternoView usuarioExterno) {
 		Criteria crit = session.createCriteria(UsuarioExterno.class);
 		if (usuarioExterno.getNombre() != null && !CADENA_VACIA.equals(usuarioExterno.getNombre())) {
-			crit.add(Restrictions.eq("nombre", usuarioExterno.getNombre()));
+			crit.add(Restrictions.like("nombre", usuarioExterno.getNombre(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getApellido1() != null && !CADENA_VACIA.equals(usuarioExterno.getApellido1())) {
-			crit.add(Restrictions.eq("apellido1", usuarioExterno.getApellido1()));
+			crit.add(Restrictions.like("apellido1", usuarioExterno.getApellido1(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getApellido2() != null && !CADENA_VACIA.equals(usuarioExterno.getApellido2())) {
-			crit.add(Restrictions.eq("apellido2", usuarioExterno.getApellido2()));
+			crit.add(Restrictions.like("apellido2", usuarioExterno.getApellido2(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getIdentificador() != null && !CADENA_VACIA.equals(usuarioExterno.getIdentificador())) {
-			crit.add(Restrictions.eq("identificador", usuarioExterno.getIdentificador()));
+			crit.add(Restrictions.like("identificador", usuarioExterno.getIdentificador(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getNifPasaporte() != null && !CADENA_VACIA.equals(usuarioExterno.getNifPasaporte())) {
-			crit.add(Restrictions.eq("nifPasaporte", usuarioExterno.getNifPasaporte()));
+			crit.add(Restrictions.like("nifPasaporte", usuarioExterno.getNifPasaporte(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getTelefono() != null && !CADENA_VACIA.equals(usuarioExterno.getTelefono())) {
-			crit.add(Restrictions.eq("telefono", usuarioExterno.getTelefono()));
+			crit.add(Restrictions.like("telefono", usuarioExterno.getTelefono(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getMail() != null && !CADENA_VACIA.equals(usuarioExterno.getMail())) {
-			crit.add(Restrictions.eq("mail", usuarioExterno.getMail()));
+			crit.add(Restrictions.like("mail", usuarioExterno.getMail(), MatchMode.ANYWHERE));
 		}
 		if (usuarioExterno.getLocalidad() != null && !CADENA_VACIA.equals(usuarioExterno.getLocalidad())) {
-			crit.add(Restrictions.eq("localidad", usuarioExterno.getLocalidad()));
+			crit.add(Restrictions.like("localidad", usuarioExterno.getLocalidad(), MatchMode.ANYWHERE));
 		}
 		@SuppressWarnings("unchecked")
 		List<UsuarioExterno> results = (List<UsuarioExterno>) crit.list();
