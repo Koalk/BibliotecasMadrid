@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.codinghome.bibliouned.model.UsuarioExterno;
 import com.codinghome.bibliouned.service.ConsultaUsuariosService;
 import com.codinghome.bibliouned.view.UsuarioExternoView;
 
@@ -29,7 +28,6 @@ public class ConsultaUsuariosController {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 	@Autowired
 	private ConsultaUsuariosService consultaUsuariosService;
 	public void setConsultaUsuariosService(ConsultaUsuariosService consultaUsuariosService) {
@@ -45,7 +43,7 @@ public class ConsultaUsuariosController {
 			UsuarioExternoView usuarioExterno = new UsuarioExternoView();
 			if (identificador != null){
 				usuarioExterno.setIdentificador(identificador);
-				List<UsuarioExterno> usuariosExternos =  consultaUsuariosService.findUsuariosExternos(sessionFactory.openSession(), usuarioExterno);
+				List<UsuarioExternoView> usuariosExternos =  consultaUsuariosService.findUsuariosExternos(session, usuarioExterno);
 				model.addObject("usuariosExternos",usuariosExternos);
 			}
 			model.addObject("externalUser",usuarioExterno);
@@ -62,17 +60,7 @@ public class ConsultaUsuariosController {
 		try {
 			model = new ModelAndView();
 			model.addObject("externalUser",usuarioExterno);
-			List<UsuarioExterno> usuariosExternos =  consultaUsuariosService.findUsuariosExternos(session, usuarioExterno);
-			//		for (UsuarioExterno user: usuariosExternos) {
-			//			System.out.println(user.getNombre());
-			//			System.out.println(user.getApellido1());
-			//			System.out.println(user.getApellido2());
-			//			System.out.println(user.getIdentificador());
-			//			System.out.println(user.getNifPasaporte());
-			//			System.out.println(user.getTelefono());
-			//			System.out.println(user.getMail());
-			//			System.out.println(user.getLocalidad());
-			//		}
+			List<UsuarioExternoView> usuariosExternos =  consultaUsuariosService.findUsuariosExternos(session, usuarioExterno);
 			model.addObject("usuariosExternos",usuariosExternos);
 		} finally {
 			session.close();

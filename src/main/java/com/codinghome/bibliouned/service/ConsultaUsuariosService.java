@@ -1,5 +1,6 @@
 package com.codinghome.bibliouned.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.codinghome.bibliouned.dao.UsuarioDao;
 import com.codinghome.bibliouned.dao.UsuarioExternoDao;
 import com.codinghome.bibliouned.model.UsuarioExterno;
+import com.codinghome.bibliouned.util.ViewUtil;
 import com.codinghome.bibliouned.view.UsuarioExternoView;
 
 @Service("consultaUsuarioService")
@@ -19,11 +21,15 @@ public class ConsultaUsuariosService {
 	public void setUsuarioExternoDao(UsuarioExternoDao usuarioExternoDao) {
 		this.usuarioExternoDao = usuarioExternoDao;
 	}
-	
 	@Autowired
 	private UsuarioDao usuarioDao;
 	public void setUsuarioDao(UsuarioDao usuarioDao) {
 		this.usuarioDao = usuarioDao;
+	}
+	@Autowired
+    private ViewUtil viewUtil;
+	public void setViewUtil(ViewUtil viewUtil) {
+		this.viewUtil = viewUtil;
 	}
 	
 	public UsuarioExternoView getUsuarioExterno(Session session, String identificador) {
@@ -42,9 +48,13 @@ public class ConsultaUsuariosService {
 		return usuarioExterno;
 	}
 	
-	public List<UsuarioExterno> findUsuariosExternos(Session session, UsuarioExternoView usuarioExterno) {
+	public List<UsuarioExternoView> findUsuariosExternos(Session session, UsuarioExternoView usuarioExterno) {
 		List<UsuarioExterno> usuariosExternos = usuarioExternoDao.getUsuariosExternosFiltrados(session, usuarioExterno);
-		return usuariosExternos;
+		List<UsuarioExternoView> usuariosExternosView = new ArrayList<>();
+		for (UsuarioExterno elem : usuariosExternos){
+			usuariosExternosView.add(viewUtil.getViewFromUsuarioExterno(elem));
+		}
+		return usuariosExternosView;
 	}
 	
 }

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 
 import com.codinghome.bibliouned.model.Biblioteca;
@@ -101,9 +102,14 @@ public class UsuarioExternoDao {
 		if (usuarioExterno.getLocalidad() != null && !CADENA_VACIA.equals(usuarioExterno.getLocalidad())) {
 			crit.add(Restrictions.like("localidad", usuarioExterno.getLocalidad(), MatchMode.ANYWHERE));
 		}
+		if (usuarioExterno.getBiblioteca() != null && !CADENA_VACIA.equals(usuarioExterno.getBiblioteca())) {
+			Criteria critBiblioteca = crit.createCriteria("biblioteca", JoinType.INNER_JOIN);
+			critBiblioteca.add(Restrictions.or(
+					Restrictions.like("nombre", usuarioExterno.getBiblioteca(), MatchMode.ANYWHERE),
+					Restrictions.like("identificador", usuarioExterno.getBiblioteca(), MatchMode.ANYWHERE)));
+		}
 		@SuppressWarnings("unchecked")
 		List<UsuarioExterno> results = (List<UsuarioExterno>) crit.list();
-//		UsuarioExterno usuarioExterno = (UsuarioExterno) crit.uniqueResult();
 		return results;
 	}
 }

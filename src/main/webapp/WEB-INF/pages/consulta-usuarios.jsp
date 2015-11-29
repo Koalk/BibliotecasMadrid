@@ -91,10 +91,14 @@
 											<form:label path="localidad" class="control-label" style="min-width: 125px;">Localidad: </form:label>
 											<form:input type="text" class="form-control" path="localidad" placeholder="Localidad" />
 										</div>
-										<div class="col-sm-4,row text-right" style="padding-right: 10%">
-											<a class="btn btn-warning" id="clean">Limpiar</a>
-											<input type="submit" class="btn btn-primary" id="search" value="Buscar" />
+										<div class="col-sm-4">
+											<form:label path="biblioteca" class="control-label" style="min-width: 125px;">Biblioteca: </form:label>
+											<form:input type="text" class="form-control" path="biblioteca" placeholder="biblioteca" />
 										</div>
+									</div>
+									<div class="col-sm-4,row text-right" style="padding-top:5%;padding-right: 10%">
+										<a class="btn btn-warning" id="clean">Limpiar</a>
+										<input type="submit" class="btn btn-primary" id="search" value="Buscar" />
 									</div>
 								</div>
 							</div>
@@ -110,7 +114,7 @@
 						<table class="table table-hover" id="table">
 							<thead>
 								<tr>
-									<th>Numero de usuario</th>
+									<th>Id de usuario</th>
 									<th>NIF/Pasaporte</th>
 									<th>Nombre</th>
 									<th>Apellidos</th>
@@ -118,6 +122,7 @@
 									<th>Correo electrónico</th>
 									<th>Teléfono</th>
 									<th>Código postal</th>
+									<th>Biblioteca</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -132,6 +137,7 @@
 										<td>${user.mail}</td>
 										<td>${user.telefono}</td>
 										<td>${user.codigoPostal}</td>
+										<td>${user.biblioteca}</td>
 										<td>
 											<a class="btn btn-primary"
 												data-toggle="modal" data-target="#modify-user-modal"

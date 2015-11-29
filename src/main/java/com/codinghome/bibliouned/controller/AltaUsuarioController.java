@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.codinghome.bibliouned.model.UsuarioExterno;
 import com.codinghome.bibliouned.service.AltaUsuarioService;
 import com.codinghome.bibliouned.view.UsuarioExternoView;
 
@@ -118,11 +117,9 @@ public class AltaUsuarioController implements ServletContextAware{
 				String pathFoto = null;
 				if ((pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, result)) != null){
 					Transaction tx = session.beginTransaction();
-					UsuarioExterno usuarioExterno = altaUsuarioService.getUsuarioExternoFromView(session, principal.getName(), externalUser);
-					usuarioExterno.setFoto(pathFoto);
-					altaUsuarioService.persist(session,usuarioExterno);
+					altaUsuarioService.persist(session,externalUser,pathFoto,principal.getName());
 					tx.commit();
-					model.setViewName("redirect:consulta-usuarios?userIdentificador="+usuarioExterno.getIdentificador());
+					model.setViewName("redirect:consulta-usuarios?userIdentificador="+externalUser.getIdentificador());
 				}
 				else {
 					model.addObject("externalUser",externalUser);
