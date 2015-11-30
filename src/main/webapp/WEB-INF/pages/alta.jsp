@@ -32,7 +32,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12"
-							style="font-size: 18px; padding-bottom: 20px; padding-left: 20px;">
+							style="font-size: 14px; padding-bottom: 20px; padding-left: 20px;">
 							<div style="display: inline;" class="col-md-5">
 								<form:label path="identificador" style="padding-right: 10px">Identificador:</form:label>
 								<form:input id="identificadorField" path="identificador" maxlength="20" readonly="true" />
@@ -174,15 +174,15 @@
 					<div class="row">
 						<div class="col-md-6" style="padding-top: 10px">
 							<input id="saveButton" type="submit" class="btn btn-block btn-lg btn-primary"
-								style="height: 60px; font-size: 25px; padding-top: 10px;"
+								style="height: 50px; font-size: 20px; padding-top: 10px;"
 								value="Guardar" />
 						</div>
 						<div class="col-md-6" style="padding-top: 10px">
 							<a id="discardButton" class="btn btn-block btn-lg btn-warning"
-								style="height: 60px; font-size: 25px; padding-top: 10px;">Descartar</a>
+								style="height: 50px; font-size: 20px; padding-top: 10px;">Descartar</a>
 							<input id="modifyButton" type="button"
 								class="btn btn-block btn-lg btn-primary"
-								style="height: 60px; font-size: 25px; padding-top: 10px;"
+								style="height: 50px; font-size: 20px; padding-top: 10px;"
 								value="Modificar" />
 						</div>
 					</div>

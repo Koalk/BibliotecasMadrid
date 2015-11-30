@@ -96,7 +96,7 @@
 											<form:input type="text" class="form-control" path="biblioteca" placeholder="biblioteca" />
 										</div>
 									</div>
-									<div class="col-sm-4,row text-right" style="padding-top:5%;padding-right: 10%">
+									<div class="col-sm-4,row text-right" style="padding-top:8%;padding-right: 15%">
 										<a class="btn btn-warning" id="clean">Limpiar</a>
 										<input type="submit" class="btn btn-primary" id="search" value="Buscar" />
 									</div>

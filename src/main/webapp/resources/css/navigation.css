@@ -1087,7 +1087,7 @@ html {
 }
 body {
   font-family: Ubuntu;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #ffffff;
@@ -6604,7 +6604,7 @@ body {
 }
 .section {
   position: relative;
-  padding: 35px 0;
+  padding-top: 15px;
 }
 .section .background-image {
   z-index: 0;

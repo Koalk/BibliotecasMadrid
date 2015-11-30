@@ -20,18 +20,16 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<img src="<c:url value="/resources/img/logo.jpg" />"
-						class="img-responsive margin-auto" width="400px">
+						class="img-responsive margin-auto" width="300px">
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-header text-center">
 						<h1>Gestión de Usuarios Externos&nbsp;</h1>
-						<br> <br>
 						<h1>
 							<font color="#777777"> <span
-								style="font-size: 23.4px; line-height: 23.4px;">Bibliotecas
-									de zona del Centro Asociado de Madrid</span>
+								style="font-size: 20px; line-height: 22px;">Bibliotecas Centro Asociado de Madrid</span>
 							</font>
 						</h1>
 					</div>

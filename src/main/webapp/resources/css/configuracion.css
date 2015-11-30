@@ -1087,7 +1087,7 @@ html {
 }
 body {
   font-family: Ubuntu;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #ffffff;
@@ -6783,7 +6783,7 @@ body {
   width: 100%;
 }
 .form-field label {
-  font-size: 18px;
+  font-size: 14px;
 }
 .content {
 	padding-top: 100px;

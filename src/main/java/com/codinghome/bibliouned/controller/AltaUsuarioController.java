@@ -143,8 +143,6 @@ public class AltaUsuarioController implements ServletContextAware{
 			File file = new File(servletContext.getRealPath("/") + "/../../fotos/" + fileName);
 			FileUtils.writeByteArrayToFile(file, image);
 			result = fileName;
-			System.out.println("Go to the location:  " + file.toString()
-					+ " on your computer and verify that the image has been stored.");
 		} catch (Exception e) {
 			log.error(e);
 			ObjectError error = new ObjectError("foto", "No se ha podido guardar la foto.");

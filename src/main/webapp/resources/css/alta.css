@@ -1087,7 +1087,7 @@ html {
 }
 body {
   font-family: Ubuntu;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #ffffff;
@@ -2492,7 +2492,7 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 20px;
-  font-size: 21px;
+  font-size: 15px;
   line-height: inherit;
   color: #333333;
   border: 0;
@@ -2536,7 +2536,7 @@ input[type="checkbox"]:focus {
 output {
   display: block;
   padding-top: 7px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #555555;
 }
@@ -2545,7 +2545,7 @@ output {
   width: 100%;
   height: 34px;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #555555;
   background-color: #ffffff;
@@ -2734,7 +2734,7 @@ select[multiple].form-group-sm .form-control {
 .input-lg {
   height: 46px;
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 1.3333333;
   border-radius: 5px;
 }
@@ -6604,7 +6604,7 @@ body {
 }
 .section {
   position: relative;
-  padding: 35px 0;
+  padding-top: 15px;
 }
 .section .background-image {
   z-index: 0;
@@ -6783,7 +6783,7 @@ body {
   width: 100%;
 }
 .form-field label {
-  font-size: 18px;
+  font-size: 14px;
 }
 .content {
 	padding-top: 100px;
