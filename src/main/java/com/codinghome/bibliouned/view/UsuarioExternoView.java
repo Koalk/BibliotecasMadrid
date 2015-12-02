@@ -17,6 +17,7 @@ public class UsuarioExternoView {
 	private String mail;
 	private String telefono;
 	private String localidad;
+	private String provincia;
 	private String codigoPostal;
 	private String direccion;
 	private String observaciones;
@@ -95,6 +96,15 @@ public class UsuarioExternoView {
 	}
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
+	}
+	
+	@Size(max = 64, message="No puede superar 64 caracteres.")
+	public String getProvincia() {
+		return this.provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 	
 	@Size(min = 5, max = 5, message="Debe ser de 5 caracteres.")

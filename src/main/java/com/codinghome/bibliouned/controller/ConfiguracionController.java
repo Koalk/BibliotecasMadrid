@@ -87,7 +87,7 @@ public class ConfiguracionController {
 					usuario.setPassword(user.getNewPassword() != null ? user.getNewPassword() : oldUser.getPassword());
 					configuracionService.persist(session,usuario);
 					tx.commit();
-					model.setViewName("redirect:login?logout");
+					model.setViewName("redirect:logout?msg=Cambios en su usuario guardados correctamente.");
 				}
 				else {
 					model.addObject("user",user);

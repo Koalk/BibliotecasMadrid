@@ -31,6 +31,7 @@ public class UsuarioExterno implements java.io.Serializable {
 	private String mail;
 	private String telefono;
 	private String localidad;
+	private String provincia;
 	private String codigoPostal;
 	private String direccion;
 	private String observaciones;
@@ -152,6 +153,15 @@ public class UsuarioExterno implements java.io.Serializable {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	@Column(name = "provincia", length = 64)
+	public String getProvincia() {
+		return this.provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 
 	@Column(name = "localidad", length = 64)

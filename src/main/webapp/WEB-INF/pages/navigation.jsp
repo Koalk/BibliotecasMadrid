@@ -24,7 +24,7 @@
 						</li>
 						<li id="alta"><a href="alta">Alta de usuarios</a></li>
 						<li id="configuracion"><a href="configuracion">Configuración</a></li>
-						<li id="salir"><a href="logout">Salir</a></li>
+						<li id="salir"><a href="logout?msg=Su sesion se ha cerrado correctamente">Salir</a></li>
 					</ul>
 				</div>
 			</div>

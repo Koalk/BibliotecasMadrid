@@ -41,6 +41,7 @@ public class ViewUtil {
 		view.setCodigoPostal(usuarioExterno.getCodigoPostal());
 		view.setDireccion(usuarioExterno.getDireccion());
 		view.setLocalidad(usuarioExterno.getLocalidad());
+		view.setProvincia(usuarioExterno.getProvincia());
 		view.setMail(usuarioExterno.getMail());
 		view.setNifPasaporte(usuarioExterno.getNifPasaporte());
 		view.setObservaciones(usuarioExterno.getObservaciones());
@@ -67,6 +68,7 @@ public class ViewUtil {
 		usuarioExterno.setCodigoPostal(view.getCodigoPostal());
 		usuarioExterno.setDireccion(view.getDireccion());
 		usuarioExterno.setLocalidad(view.getLocalidad());
+		usuarioExterno.setProvincia(view.getProvincia());
 		usuarioExterno.setMail(view.getMail());
 		usuarioExterno.setNifPasaporte(view.getNifPasaporte());
 		usuarioExterno.setObservaciones(view.getObservaciones());

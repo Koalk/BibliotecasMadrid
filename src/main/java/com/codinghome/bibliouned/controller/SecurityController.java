@@ -2,11 +2,9 @@ package com.codinghome.bibliouned.controller;
 
 import java.security.Principal;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,7 +22,7 @@ import com.codinghome.bibliouned.service.UserService;
 @Controller
 public class SecurityController {
 	
-	private static final Logger log = Logger.getLogger(SecurityController.class.getSimpleName());
+//	private static final Logger log = Logger.getLogger(SecurityController.class.getSimpleName());
 
 	@Autowired
 	private UserService userService;
@@ -36,7 +34,7 @@ public class SecurityController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(
 			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout,
+			@RequestParam(value = "msg", required = false) String msg,
 			final HttpServletRequest request, Principal principal) {
 
 		ModelAndView model = new ModelAndView();
@@ -44,25 +42,21 @@ public class SecurityController {
 			model.addObject("error", "Usuario o contraseña incorrecto.");
 		}
 
-		if (logout != null) {
-			model.addObject("msg", "Su sesión se ha cerrado correctamente.");
-			try {
-				request.logout();
-			} catch (ServletException e) {
-				log.debug("Se ha intentando hacer logout del usuario "+ principal != null ? principal.getName() : "null" +" y ha habido un error.");
-			}
+		if (msg != null) {
+			model.addObject("msg", msg);
 		}
 		model.setViewName("login");
 		return model;
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ModelAndView logout(final HttpServletRequest request, final HttpServletResponse response){
+	public ModelAndView logout(@RequestParam(value = "msg", required = true) String msg,
+			final HttpServletRequest request, final HttpServletResponse response){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return new ModelAndView("redirect:/login?logout");
+	    return new ModelAndView("redirect:/login?msg="+msg);
 	}
 	//for 403 access denied page
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
