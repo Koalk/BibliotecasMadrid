@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,6 +35,7 @@ public class Usuario implements java.io.Serializable {
 	private String email;
 	private String password;
 	private Date createTime;
+	private Boolean active;
 	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 	private Set<UsuarioExterno> usuarioexternos = new HashSet<>(0);
 
@@ -131,6 +133,15 @@ public class Usuario implements java.io.Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+	
+	@Column(name = "active", nullable = false)
+	public Boolean getActive() {
+		return active;
+	}
+	
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<UsuarioExterno> getUsuarioexternos() {
@@ -141,7 +152,7 @@ public class Usuario implements java.io.Serializable {
 		this.usuarioexternos = usuarioexternos;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}

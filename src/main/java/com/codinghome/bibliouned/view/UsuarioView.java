@@ -16,6 +16,9 @@ public class UsuarioView {
 	private String password;
 	private String newPassword;
 	private String confirmPassword;
+	private Boolean enabled;
+	private Boolean userRole;
+	private Boolean adminRole;
 	
 	public UsuarioView() {}
 	
@@ -75,5 +78,26 @@ public class UsuarioView {
 	}
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	public Boolean getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(Boolean userRole) {
+		this.userRole = userRole;
+	}
+	
+	public Boolean getAdminRole() {
+		return adminRole;
+	}
+	public void setAdminRole(Boolean adminRole) {
+		this.adminRole = adminRole;
 	}
 }

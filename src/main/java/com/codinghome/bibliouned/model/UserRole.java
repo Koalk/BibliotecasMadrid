@@ -21,6 +21,11 @@ public class UserRole {
 	
 	public UserRole(){}
 	
+	public UserRole(Usuario usuario, String role){
+		this.usuario = usuario;
+		this.role = role;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

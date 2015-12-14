@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.codinghome.bibliouned.model.Usuario;
 import com.codinghome.bibliouned.service.ConfiguracionService;
+import com.codinghome.bibliouned.util.ViewUtil;
 import com.codinghome.bibliouned.view.UsuarioView;
 
 @Controller
@@ -39,6 +40,12 @@ public class ConfiguracionController {
 	private ConfiguracionService configuracionService;
 	public void setConfiguracionService(ConfiguracionService configuracionService) {
 		this.configuracionService = configuracionService;
+	}
+	
+	@Autowired
+	private ViewUtil viewUtil;
+	public void setViewUtil(ViewUtil viewUtil) {
+		this.viewUtil = viewUtil;
 	}
 
 	@InitBinder
@@ -79,11 +86,8 @@ public class ConfiguracionController {
 					if (user.getNewPassword() != null){
 						user.setNewPassword(encoder.encode(user.getNewPassword()));
 					}
-					if (user.getConfirmPassword() != null){
-						user.setConfirmPassword(encoder.encode(user.getConfirmPassword()));
-					}
 					Transaction tx = session.beginTransaction();
-					Usuario usuario = configuracionService.getUsuarioFromView(session, principal.getName(), user);
+					Usuario usuario = viewUtil.getUsuarioFromView(session, principal.getName(), user,false);
 					usuario.setPassword(user.getNewPassword() != null ? user.getNewPassword() : oldUser.getPassword());
 					configuracionService.persist(session,usuario);
 					tx.commit();

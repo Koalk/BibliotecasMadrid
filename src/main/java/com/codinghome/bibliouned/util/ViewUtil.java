@@ -8,15 +8,18 @@ import com.codinghome.bibliouned.dao.BibliotecaDao;
 import com.codinghome.bibliouned.dao.UsuarioDao;
 import com.codinghome.bibliouned.dao.UsuarioExternoDao;
 import com.codinghome.bibliouned.model.Biblioteca;
+import com.codinghome.bibliouned.model.Constants;
+import com.codinghome.bibliouned.model.UserRole;
 import com.codinghome.bibliouned.model.Usuario;
 import com.codinghome.bibliouned.model.UsuarioExterno;
 import com.codinghome.bibliouned.view.UsuarioExternoView;
+import com.codinghome.bibliouned.view.UsuarioView;
 
 @Component
 public class ViewUtil {
-	
+
 	@Autowired
-    private UsuarioExternoDao usuarioExternoDao;
+	private UsuarioExternoDao usuarioExternoDao;
 	public void setUsuarioExternoDao(UsuarioExternoDao usuarioExternoDao) {
 		this.usuarioExternoDao = usuarioExternoDao;
 	}
@@ -49,7 +52,7 @@ public class ViewUtil {
 		view.setFoto(usuarioExterno.getFoto());
 		return view;
 	}
-	
+
 	public UsuarioExterno getUsuarioExternoFromView (Session session, String name, UsuarioExternoView view){
 		UsuarioExterno usuarioExterno = null;
 		if (view.getIdentificador()!= null && !view.getIdentificador().isEmpty() && !view.getIdentificador().equals("")){
@@ -73,7 +76,44 @@ public class ViewUtil {
 		usuarioExterno.setNifPasaporte(view.getNifPasaporte());
 		usuarioExterno.setObservaciones(view.getObservaciones());
 		usuarioExterno.setTelefono(view.getTelefono());
-//		usuarioExterno.setFoto(view.getFoto());
 		return usuarioExterno;
+	}
+
+	public UsuarioView getViewFromUsuario (Usuario usuario, Boolean admin){
+		UsuarioView view = new UsuarioView();
+		view.setUsuario(usuario.getUsuario());
+		view.setPassword(usuario.getPassword());
+		view.setNombre(usuario.getNombre());
+		view.setApellidos(usuario.getApellidos());
+		view.setMail(usuario.getEmail());
+		if (admin){
+			view.setEnabled(usuario.getActive());
+			view.setAdminRole(usuario.getUserRoles().stream().anyMatch(elem -> Constants.ROLE_ADMIN.equals(elem.getRole())));
+			view.setUserRole(usuario.getUserRoles().stream().anyMatch(elem -> Constants.ROLE_USER.equals(elem.getRole())));
+		}
+		return view;
+	}
+
+	public Usuario getUsuarioFromView (Session session, String name, UsuarioView view, Boolean admin){
+		Usuario usuario = null;
+		if (name == null){
+			usuario = usuarioDao.getUsuarioByUsername(session, name);
+		}
+		else{
+			usuario = new Usuario();
+		}
+		usuario.setUsuario(view.getUsuario());
+		usuario.setApellidos(view.getApellidos());
+		usuario.setEmail(view.getMail());
+		if (admin){
+			usuario.setActive(view.getEnabled());
+			if (view.getAdminRole() && !usuario.getUserRoles().stream().anyMatch(elem -> Constants.ROLE_ADMIN.equals(elem.getRole()))){
+				usuario.getUserRoles().add(new UserRole(usuario,Constants.ROLE_ADMIN));
+			}
+			if (view.getUserRole() && !usuario.getUserRoles().stream().anyMatch(elem -> Constants.ROLE_USER.equals(elem.getRole()))){
+				usuario.getUserRoles().add(new UserRole(usuario,Constants.ROLE_USER));
+			}
+		}
+		return usuario;
 	}
 }
