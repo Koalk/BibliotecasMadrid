@@ -178,7 +178,7 @@
 									<a id="newPictureButton" href="#" class="btn btn-default"
 										style="width: 200px; display: none;">Nueva foto</a> <a
 										id="takePictureButton" href="#" class="btn btn-default"
-										style="width: 200px">Tomar foto</a>
+										style="width: 200px; display:none;">Tomar foto</a>
 								</div>
 								<form:input id="foto" path="foto" type="hidden" />
 							</div>

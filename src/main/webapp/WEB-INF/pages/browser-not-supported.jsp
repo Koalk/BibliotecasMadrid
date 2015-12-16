@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>UNED Madrid</title>
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/img/favicon.ico"/>" />
 </head>
 <body>
 	<h1>El navegador que está utilizando no está soportado por la

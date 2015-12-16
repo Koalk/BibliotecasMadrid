@@ -6,17 +6,11 @@ jQuery(document).ready(function(){
 	setWebcam();
 	$("#takePictureButton").click(function(){takePicture(); return false;});
 	$("#newPictureButton").click(function(){switchCamPreview(true); return false;});
-	if ($("#foto").val() && $("#foto").val().indexOf(".jpg")>=0){
-		getDataUri($("#foto").val(), setFotoDataUrl);
-	}
-	else {
-		previewFoto();
-	}
+	$("#takePictureButton").hide();
+	$("#newPictureButton").hide();
 	if ($("#identificadorField").val() && $('#allErrors').children().length == 0){
 		$("#contentDiv").css("padding-top","10px")
 		$("#altaForm :input").prop("disabled", true);
-		$("#takePictureButton").hide();
-		$("#newPictureButton").hide();
 		$("#modifyButton").click(function(){enableForm();return false;});
 		$("#saveButton").prop("disabled",true);
 		$("#modifyButton").prop("disabled",false);
@@ -27,13 +21,20 @@ jQuery(document).ready(function(){
 	else if ($("#identificadorField").val() && $('#allErrors').children().length != 0){
 		$("#contentDiv").css("padding-top","10px")
 		$("#saveButton").show();
+		$("#discardButton").show();
 		$("#modifyButton").hide();
 	}
 	else {
 		$("#modifyButton").hide();
+		$("#saveButton").show();
 		$("#discardButton").show();
 		$("#discardButton").prop("href","consulta-usuarios");
-		$("#saveButton").show();
+	}
+	if ($("#foto").val() && $("#foto").val().indexOf(".jpg")>=0){
+		getDataUri($("#foto").val(), setFotoDataUrl);
+	}
+	else {
+		previewFoto();
 	}
 });
 
@@ -80,8 +81,10 @@ function takePicture(){
 
 function switchCamPreview(toOn){
 	if (toOn){
-		$("#newPictureButton").hide();
-		$("#takePictureButton").show();
+		if (!$("#modifyButton").is(":visible")){
+			$("#newPictureButton").hide();
+			$("#takePictureButton").show();
+		}
 		$("#fotoPreview").hide();
 		$("#camContainer").show();
 		$("#camPreview").show();
