@@ -86,4 +86,9 @@ public class SecurityController {
 		}
 		return model;
 	}
+	
+	@RequestMapping(value = "/browser-not-supported", method = RequestMethod.GET)
+	public ModelAndView browserNotSupported(){
+		return new ModelAndView("browser-not-supported");
+	}
 }

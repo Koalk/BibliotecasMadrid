@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Login</title>
+<title>UNED Madrid</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	src="<c:url value="/resources/js/libs/jquery.js" />"></script>
 <script type="text/javascript"
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link
@@ -13,6 +13,10 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/css/index.css" />" rel="stylesheet"
 	type="text/css">
+<link rel="shortcut icon" type="image/x-icon"
+	href="<c:url value="/resources/img/favicon.ico"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/login.js" />"></script>
 </head>
 <body onload='document.loginForm.user.focus();'>
 	<div class="section">
@@ -29,7 +33,8 @@
 						<h1>Gestión de Usuarios Externos&nbsp;</h1>
 						<h1>
 							<font color="#777777"> <span
-								style="font-size: 20px; line-height: 22px;">Bibliotecas Centro Asociado de Madrid</span>
+								style="font-size: 20px; line-height: 22px;">Bibliotecas
+									Centro Asociado de Madrid</span>
 							</font>
 						</h1>
 					</div>

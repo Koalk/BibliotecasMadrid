@@ -3,7 +3,7 @@
 <%@page session="true"%>
 <html>
 <head>
-<title>Nuevo usuario</title>
+<title>UNED Madrid</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
@@ -195,16 +195,16 @@
 						<div class="col-md-6" style="padding-top: 10px">
 							<input id="saveButton" type="submit"
 								class="btn btn-block btn-lg btn-primary"
-								style="height: 50px; font-size: 20px; padding-top: 10px;"
+								style="height: 50px; font-size: 20px; padding-top: 10px; display:none;"
 								value="Guardar" />
 						</div>
 						<div class="col-md-6" style="padding-top: 10px">
 							<a id="discardButton" class="btn btn-block btn-lg btn-warning"
-								style="height: 50px; font-size: 20px; padding-top: 10px;">Descartar</a>
+								style="height: 50px; font-size: 20px; padding-top: 10px; display:none;">Descartar</a>
 							<input id="modifyButton" type="button"
 								class="btn btn-block btn-lg btn-primary"
-								style="height: 50px; font-size: 20px; padding-top: 10px;"
-								value="Modificar" />
+								style="height: 50px; font-size: 20px; padding-top: 10px; display:none;"
+								value="Modificar"/>
 						</div>
 					</div>
 				</div>

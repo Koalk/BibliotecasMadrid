@@ -3,7 +3,7 @@
 <%@page session="true"%>
 <html>
 <head>
-<title>Configuración</title>
+<title>UNED Madrid</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
@@ -35,19 +35,19 @@
 									<div class="form-field">
 										<form:label path="nombre" style="padding-right: 10px">Nombre: </form:label>
 										<form:input type="text" class="form-control" path="nombre"
-											maxlength="64" />
+											maxlength="64" readonly="true" style="background-color:#DEDEDE;"/>
 										<form:errors path="nombre" cssClass="error-field" />
 									</div>
 									<div class="form-field">
 										<form:label path="apellidos" style="padding-right: 10px">Apellidos: </form:label>
 										<form:input type="text" class="form-control" path="apellidos"
-											maxlength="128" />
+											maxlength="128" readonly="true" style="background-color:#DEDEDE;"/>
 										<form:errors path="apellidos" cssClass="error-field" />
 									</div>
 									<div class="form-field">
 										<form:label path="mail" style="padding-right: 10px">Correo electrónico: </form:label>
 										<form:input type="text" class="form-control" path="mail"
-											maxlenght="256" />
+											maxlenght="256" readonly="true" style="background-color:#DEDEDE;"/>
 										<form:errors path="mail" cssClass="error-field" />
 									</div>
 								</div>
@@ -56,11 +56,11 @@
 									<div class="form-field">
 										<form:label path="usuario" style="padding-right: 10px">Usuario de acceso: </form:label>
 										<form:input type="text" class="form-control" path="usuario"
-											maxlength="64" />
+											maxlength="64" readonly="true" style="background-color:#DEDEDE;"/>
 										<form:errors path="usuario" cssClass="error-field" />
 									</div>
 									<div class="form-field">
-										<form:label path="password" style="padding-right: 10px">Contraseña: </form:label>
+										<form:label path="password" style="padding-right: 10px">Contraseña actual: </form:label>
 										<form:password class="form-control" path="password"
 											maxlength="64" />
 										<form:errors path="password" cssClass="error-field" />

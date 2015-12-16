@@ -7,6 +7,7 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/navigation.js" />"></script>
 <link href="<c:url value="/resources/css/navigation.css" />" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/img/favicon.ico"/>" />
 </head>
 <body>
 	<div style="width: 100%;">
