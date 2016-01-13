@@ -1,5 +1,7 @@
 package com.codinghome.bibliouned.view;
 
+import java.util.Date;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -21,6 +23,7 @@ public class UsuarioExternoView {
 	private String codigoPostal;
 	private String direccion;
 	private String observaciones;
+	private Date createTime;
 	private String foto;
 	
 	public UsuarioExternoView() {}
@@ -130,6 +133,13 @@ public class UsuarioExternoView {
 	}
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+	
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	@NotEmpty(message = "Debe añadir una foto.")

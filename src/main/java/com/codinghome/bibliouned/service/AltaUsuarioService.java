@@ -1,5 +1,6 @@
 package com.codinghome.bibliouned.service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.hibernate.Session;
@@ -59,6 +60,15 @@ public class AltaUsuarioService {
 	public UsuarioExternoView getUsuarioExternoByIdentificador(Session session, String identificador) {
 		UsuarioExternoView usuarioExterno = viewUtil.getViewFromUsuarioExterno(usuarioExternoDao.getUsuarioExternoByIdentificador(session, identificador));
 		return usuarioExterno;
+	}
+	
+	public Boolean existsNIF(Session session, String nif, String identificador) {
+		Boolean result = false;
+		List<UsuarioExterno> usuarioExternoList = usuarioExternoDao.getUsuarioExternoByNif(session, nif);
+		if ((identificador == null && !usuarioExternoList.isEmpty()) || usuarioExternoList.stream().anyMatch(elem -> !elem.getIdentificador().equals(identificador))){
+			result = true;
+		}
+		return result;
 	}
 	
 }

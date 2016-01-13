@@ -76,6 +76,14 @@ public class UsuarioExternoDao {
 		return usuarioExterno;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<UsuarioExterno> getUsuarioExternoByNif(Session session, String nif) {
+		Criteria crit = session.createCriteria(UsuarioExterno.class);
+		crit.add(Restrictions.eq("nifPasaporte", nif));
+		List<UsuarioExterno> usuarioExternoList = crit.list();
+		return usuarioExternoList;
+	}
+	
 	public List<UsuarioExterno> getUsuariosExternosFiltrados(Session session, UsuarioExternoView usuarioExterno) {
 		Criteria crit = session.createCriteria(UsuarioExterno.class);
 		if (usuarioExterno.getNombre() != null && !CADENA_VACIA.equals(usuarioExterno.getNombre())) {

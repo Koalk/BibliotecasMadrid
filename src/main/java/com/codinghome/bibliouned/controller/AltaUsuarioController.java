@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -57,10 +58,10 @@ public class AltaUsuarioController implements ServletContextAware{
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
 	}
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -108,14 +109,18 @@ public class AltaUsuarioController implements ServletContextAware{
 		if (!result.hasErrors()){
 			Session session = this.sessionFactory.openSession();
 			try {
+				if (altaUsuarioService.existsNIF(session, externalUser.getNifPasaporte(), externalUser.getIdentificador())){
+					ObjectError error = new FieldError("externalUser", "nifPasaporte", externalUser.getNifPasaporte(), false, null, null, "El documento introducido ya existe.");
+					result.addError(error);
+				}
 				byte[] foto = null;
 				if (externalUser.getFoto() == null || (foto = Base64.decode(externalUser.getFoto().getBytes())) == null || foto.length <= 0){
-					ObjectError error = new ObjectError("foto", "Es obligatorio añadir una foto.");
+					ObjectError error = new FieldError("externalUser", "foto", externalUser.getFoto(), false, null, null, "Es obligatorio añadir una foto.");
 					result.addError(error);
 				}
 				model = new ModelAndView();
 				String pathFoto = null;
-				if ((pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, result)) != null){
+				if (!result.hasErrors() && (pathFoto = saveImage(externalUser.getNifPasaporte() + ".jpg", foto, result)) != null){
 					Transaction tx = session.beginTransaction();
 					altaUsuarioService.persist(session,externalUser,pathFoto,principal.getName());
 					tx.commit();

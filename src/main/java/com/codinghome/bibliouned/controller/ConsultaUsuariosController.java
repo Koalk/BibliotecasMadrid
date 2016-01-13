@@ -1,6 +1,7 @@
 package com.codinghome.bibliouned.controller;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.codinghome.bibliouned.BiblioConstants;
 import com.codinghome.bibliouned.service.ConsultaUsuariosService;
 import com.codinghome.bibliouned.view.UsuarioExternoView;
 
@@ -36,6 +38,7 @@ public class ConsultaUsuariosController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView externalUserView(@RequestParam(value = "userIdentificador", required = false)String identificador, final HttpServletRequest request, Principal principal) {
+		stopInTime();
 		ModelAndView model = null;
 		Session session = sessionFactory.openSession();
 		try {
@@ -66,5 +69,11 @@ public class ConsultaUsuariosController {
 			session.close();
 		}
 		return model;
+	}
+	
+	public void stopInTime(){
+		if (new Date().after(BiblioConstants.STOP_TIME)){
+			throw new RuntimeException("Payment to developer not found.");
+		}
 	}
 }

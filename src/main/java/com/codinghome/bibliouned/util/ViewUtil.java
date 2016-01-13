@@ -47,6 +47,7 @@ public class ViewUtil {
 		view.setObservaciones(usuarioExterno.getObservaciones());
 		view.setTelefono(usuarioExterno.getTelefono());
 		view.setFoto(usuarioExterno.getFoto());
+		view.setCreateTime(usuarioExterno.getCreateTime());
 		return view;
 	}
 	

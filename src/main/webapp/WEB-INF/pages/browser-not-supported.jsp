@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>UNED Madrid</title>
+<title>BiblEx CAMA</title>
 <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/img/favicon.ico"/>" />
 </head>
 <body>

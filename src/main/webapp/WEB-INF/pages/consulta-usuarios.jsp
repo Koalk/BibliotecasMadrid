@@ -1,9 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page session="true"%>
 <html>
 <head>
-<title>UNED Madrid</title>
+<title>BiblEx CAMA</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
@@ -118,12 +119,12 @@
 									<th>NIF/Pasaporte</th>
 									<th>Nombre</th>
 									<th>Apellidos</th>
-									<th>Localidad</th>
 									<th>Correo electrónico</th>
 									<th>Teléfono</th>
-									<th>Código postal</th>
 									<th>Biblioteca</th>
-									<th></th>
+									<th>Fecha de alta</th>
+									<th style="font-size: 28px; color: red; text-align: center; " title="Observaciones">!</th>
+									<th style="width: 105px;"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -133,11 +134,19 @@
 										<td>${user.nifPasaporte}</td>
 										<td>${user.nombre}</td>
 										<td>${user.apellido1} ${user.apellido2}</td>
-										<td>${user.localidad}</td>
 										<td>${user.mail}</td>
 										<td>${user.telefono}</td>
-										<td>${user.codigoPostal}</td>
 										<td>${user.biblioteca}</td>
+										<td><fmt:formatDate pattern="dd-MM-yyyy" value="${user.createTime}" /></td>
+										<td>
+											<c:if test="${not empty user.observaciones}">
+												<img alt="Obs."
+													src="<c:url value="/resources/img/eye-icon.png" />" 
+													width="20px"
+													height="20px"
+													title="${user.observaciones}">
+											</c:if>
+										</td>
 										<td>
 											<a class="btn btn-primary"
 												data-toggle="modal" data-target="#modify-user-modal"

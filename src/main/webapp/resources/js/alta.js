@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
 	else if ($("#identificadorField").val() && $('#allErrors').children().length != 0){
 		$("#contentDiv").css("padding-top","10px")
 		$("#saveButton").show();
-		$("#discardButton").show();
+		$("#discardButton").hide();
 		$("#modifyButton").hide();
 	}
 	else {
@@ -64,8 +64,6 @@ function setWebcam(){
 		crop_width: 480,
 		crop_height: 480,
 
-		// flip horizontal (mirror mode)
-		flip_horiz: true
 	});
 	return false;
 }
