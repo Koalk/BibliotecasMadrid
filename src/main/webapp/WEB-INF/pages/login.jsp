@@ -37,6 +37,11 @@
 									Centro Asociado de Madrid</span>
 							</font>
 						</h1>
+						<h1>
+							<font color="#777777"> <span
+								style="font-size: 20px; line-height: 22px;">BiblEx v.1</span>
+							</font>
+						</h1>
 					</div>
 				</div>
 			</div>
